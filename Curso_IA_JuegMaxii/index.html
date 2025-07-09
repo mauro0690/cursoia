@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso: Creación de Contenido Infantil con IA - Juega Maxii</title>
+    <link href="dist/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Professional & Playful (Slate/Indigo/Amber) -->
+    <!-- Application Structure Plan: A central homepage to act as a portal. The design is a clean, card-based layout. The main interaction is clicking a module card to navigate to that specific lesson. This provides a clear and intuitive user journey from the start. -->
+    <!-- Visualization & Content Choices: The main content is a responsive grid of interactive cards (buttons). Each card represents a module, clearly showing its number, title, and a representative icon. This is a standard and highly effective UI pattern for course navigation. The logo is prominently displayed to reinforce the brand identity. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .module-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: all 0.3s ease-in-out;
+            border: 1px solid #e2e8f0; /* slate-200 */
+        }
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            border-color: #4f46e5; /* indigo-600 */
+        }
+        .module-card .icon {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="container mx-auto px-4 py-8 md:py-16">
+
+        <header class="text-center mb-12 md:mb-16">
+            <img src="img/logo.png" alt="Logo de Juega Maxii" class="w-24 h-24 mx-auto rounded-full shadow-lg mb-4">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900">Curso de Creación de Contenido Infantil con IA</h1>
+            <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">Bienvenido al centro de aprendizaje. Selecciona un módulo para comenzar tu viaje desde la idea hasta la animación final.</p>
+        </header>
+
+        <main>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                
+                <!-- Módulo 1 -->
+                <a href="modulo_1.html" class="module-card block p-6 md:p-8 text-center">
+                    <div class="icon mb-4">🧠</div>
+                    <p class="text-sm font-semibold text-indigo-600">MÓDULO 1</p>
+                    <h2 class="text-xl font-bold text-slate-900 mt-1">Conceptualización y Guion</h2>
+                    <p class="text-slate-500 mt-2 text-sm">Aprende a generar ideas y a escribir guiones sólidos con la ayuda de Gemini.</p>
+                </a>
+
+                <!-- Módulo 2 -->
+                <a href="modulo_2.html" class="module-card block p-6 md:p-8 text-center">
+                    <div class="icon mb-4">🎨</div>
+                    <p class="text-sm font-semibold text-indigo-600">MÓDULO 2</p>
+                    <h2 class="text-xl font-bold text-slate-900 mt-1">Creación Visual</h2>
+                    <p class="text-slate-500 mt-2 text-sm">Diseña personajes y escenarios consistentes y atractivos para tu historia.</p>
+                </a>
+
+                <!-- Módulo 3 -->
+                <a href="modulo_3.html" class="module-card block p-6 md:p-8 text-center">
+                    <div class="icon mb-4">🎬</div>
+                    <p class="text-sm font-semibold text-indigo-600">MÓDULO 3</p>
+                    <h2 class="text-xl font-bold text-slate-900 mt-1">Animación con IA</h2>
+                    <p class="text-slate-500 mt-2 text-sm">Da vida a tus imágenes estáticas, creando movimiento y controlando la cámara.</p>
+                </a>
+
+                <!-- Módulo 4 -->
+                <a href="modulo_4.html" class="module-card block p-6 md:p-8 text-center">
+                    <div class="icon mb-4">🎵</div>
+                    <p class="text-sm font-semibold text-indigo-600">MÓDULO 4</p>
+                    <h2 class="text-xl font-bold text-slate-900 mt-1">Producción de Sonido</h2>
+                    <p class="text-slate-500 mt-2 text-sm">Crea música original, canciones y narraciones profesionales para tu video.</p>
+                </a>
+
+                <!-- Módulo 5 -->
+                <a href="modulo_5.html" class="module-card block p-6 md:p-8 text-center">
+                    <div class="icon mb-4">✂️</div>
+                    <p class="text-sm font-semibold text-indigo-600">MÓDULO 5</p>
+                    <h2 class="text-xl font-bold text-slate-900 mt-1">Edición y Post-producción</h2>
+                    <p class="text-slate-500 mt-2 text-sm">Ensambla todas las piezas en CapCut para crear tu video final y pulido.</p>
+                </a>
+
+                <!-- Módulo 6 -->
+                <a href="modulo_6.html" class="module-card block p-6 md:p-8 text-center">
+                    <div class="icon mb-4">🚀</div>
+                    <p class="text-sm font-semibold text-indigo-600">MÓDULO 6</p>
+                    <h2 class="text-xl font-bold text-slate-900 mt-1">Publicación y Estrategia</h2>
+                    <p class="text-slate-500 mt-2 text-sm">Aprende a lanzar tu video al mundo y a promocionarlo en redes sociales.</p>
+                </a>
+
+            </div>
+        </main>
+
+        <footer class="text-center mt-16">
+            <p class="text-slate-500">&copy; 2025 Juega Maxii. Todos los derechos reservados.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

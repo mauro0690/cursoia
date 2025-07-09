@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Conceptualización y Guion con Gemini</title>
+    <link href="dist/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Amber/Orange/Slate) -->
+    <!-- Application Structure Plan: A 'Creative Lab' SPA with vertical tab navigation (Fundamentos, Taller, Práctica, Misión, Examen). This structure breaks the lesson into interactive, task-oriented sections, making it more engaging than a linear document. Key interactions include tabbed content display and one-click prompt copying to facilitate the practical exercises. -->
+    <!-- Visualization & Content Choices: The creative ecosystem is shown as an HTML/CSS flowchart for better visual recall (Inform Goal). Prompting techniques are on interactive cards (Organize Goal). Exercises feature 'copy' buttons (Interaction). The final evaluation is a clear mission card (Inform Goal). The new exam is an interactive form with instant feedback (Interaction Goal). This avoids a long scroll and encourages exploration. All done with HTML/CSS/JS, no graphics libraries needed. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tab-active {
+            background-color: #f59e0b; /* amber-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .prompt-block {
+            background-color: #1e293b; /* slate-800 */
+            color: #f1f5f9; /* slate-100 */
+            border-left: 4px solid #f59e0b; /* amber-500 */
+        }
+        .copy-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .tool-link {
+            text-decoration: underline;
+            font-weight: 600;
+            color: #c2410c; /* orange-700 */
+        }
+         .tool-link:hover {
+            color: #f59e0b; /* amber-500 */
+        }
+        .exam-question {
+            background-color: #f8fafc; /* slate-50 */
+            border: 1px solid #e2e8f0; /* slate-200 */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .exam-option label:hover {
+            background-color: #fefce8; /* yellow-50 */
+        }
+    </style>
+</head>
+<body class="bg-amber-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Módulo 1: Laboratorio de Conceptualización y Guion 🚀</h1>
+            <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">Bienvenido al punto de partida de tu aventura creativa. Aquí transformarás una idea en un guion listo para animar.</p>
+        </header>
+
+        <main class="flex flex-col md:flex-row gap-8">
+            <nav id="tabs-nav" class="md:w-1/4 flex flex-row md:flex-col justify-start md:justify-start overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
+                <a href="#fundamentos" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-amber-200 tab-active">🧠 Fundamentos</a>
+                <a href="#taller" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-amber-200">🛠️ El Taller Creativo</a>
+                <a href="#practica" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-amber-200">🤸 Práctica Guiada</a>
+                <a href="#evaluacion" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-amber-200">🏆 Tu Misión Final</a>
+                <a href="#examen" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-amber-200">📝 Examen Final</a>
+            </nav>
+
+            <div class="md:w-3/4">
+                <section id="fundamentos" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 1.0: Conceptos Fundamentales de la IA Generativa</h2>
+                    <p class="mb-8 text-slate-600">Antes de empezar a construir, necesitamos conocer nuestras herramientas. Aquí sentaremos las bases para todo lo que haremos en el curso, asegurando que entiendas el "qué" y el "cómo" de la creación con Inteligencia Artificial.</p>
+
+                    <div class="space-y-6">
+                        <article class="bg-amber-50/50 p-6 rounded-xl border border-amber-200">
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">¿Qué es un "Prompt"?</h3>
+                            <p class="mb-4">Un prompt es la instrucción que le das a la IA. Es tu forma de comunicarte. La calidad de tu prompt determina la calidad del resultado. Piensa en ello como si le dieras un guion a un actor: cuanto más claro y detallado sea, mejor será su actuación.</p>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="border-l-4 border-red-400 p-4 bg-red-50 rounded-lg">
+                                    <h4 class="font-bold text-red-800">Prompt Vago:</h4>
+                                    <p class="text-red-700 mt-1">"Háblame de un conejo."</p>
+                                    <p class="text-sm text-red-600 mt-2">Resultado: Información genérica, poco útil.</p>
+                                </div>
+                                <div class="border-l-4 border-green-400 p-4 bg-green-50 rounded-lg">
+                                    <h4 class="font-bold text-green-800">Prompt Específico:</h4>
+                                    <p class="text-green-700 mt-1">"Describe la personalidad de un conejo miedoso llamado Pompón, que sueña con volar. Dame 3 razones por las que quiere volar."</p>
+                                    <p class="text-sm text-green-600 mt-2">Resultado: Un personaje con motivaciones, listo para una historia.</p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="bg-amber-50/50 p-6 rounded-xl border border-amber-200">
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Tipos de IA que Usaremos</h3>
+                             <div class="grid md:grid-cols-2 gap-4">
+                                <div class="p-4 bg-white rounded-lg shadow-sm">
+                                    <h4 class="font-bold text-slate-800 text-lg">✍️ IA de Texto (<a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="tool-link">Gemini</a>)</h4>
+                                    <p class="text-slate-600 mt-1">El arquitecto. Escribe, resume y estructura ideas. Le pediremos que cree nuestros guiones.</p>
+                                    <p class="text-sm text-amber-700 mt-3 font-semibold">Ejemplo: "Escribe un diálogo entre un Sol gruñón y una Luna juguetona."</p>
+                                </div>
+                                <div class="p-4 bg-white rounded-lg shadow-sm">
+                                    <h4 class="font-bold text-slate-800 text-lg">🎨 IA de Imágenes (<a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer" class="tool-link">Google AI Studio</a>)</h4>
+                                    <p class="text-slate-600 mt-1">El ilustrador. Convierte nuestras descripciones en imágenes. Creará nuestros personajes y escenas.</p>
+                                     <p class="text-sm text-amber-700 mt-3 font-semibold">Ejemplo: "Un elefante bebé feliz volando con globos. Estilo 3D tierno."</p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="taller" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 1.1 y 1.2: Tu Taller Creativo</h2>
+                    <p class="mb-8 text-slate-600">Aquí aprenderás a usar tus herramientas como un profesional. Veremos el rol de cada IA en nuestro proyecto y dominaremos el arte de escribir prompts que den resultados espectaculares.</p>
+                    
+                    <article class="bg-amber-50/50 p-6 rounded-xl border border-amber-200 mb-8">
+                        <h3 class="text-2xl font-semibold mb-4 text-slate-700">El Ecosistema Creativo</h3>
+                        <p class="mb-4">Cada herramienta tiene una misión. Este es nuestro flujo de producción de principio a fin:</p>
+                        <div class="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-2 text-center">
+                            <div class="p-3 bg-white rounded-lg shadow-md w-full sm:w-auto">
+                                <div class="text-2xl">🧠</div>
+                                <h4 class="font-bold"><a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="tool-link">Gemini</a></h4>
+                                <p class="text-sm text-slate-500">Planifica y Escribe</p>
+                            </div>
+                            <div class="text-2xl text-amber-500 font-bold">→</div>
+                            <div class="p-3 bg-white rounded-lg shadow-md w-full sm:w-auto">
+                                 <div class="text-2xl">🎨</div>
+                                <h4 class="font-bold"><a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer" class="tool-link">Google AI</a></h4>
+                                <p class="text-sm text-slate-500">Dibuja y Visualiza</p>
+                            </div>
+                             <div class="text-2xl text-amber-500 font-bold">→</div>
+                            <div class="p-3 bg-white rounded-lg shadow-md w-full sm:w-auto">
+                                 <div class="text-2xl">🎵</div>
+                                <h4 class="font-bold"><a href="https://suno.com/invite/@stingingdirge4991" target="_blank" rel="noopener noreferrer" class="tool-link">Suno</a></h4>
+                                <p class="text-sm text-slate-500">Crea Música y Sonido</p>
+                            </div>
+                             <div class="text-2xl text-amber-500 font-bold">→</div>
+                            <div class="p-3 bg-white rounded-lg shadow-md w-full sm:w-auto">
+                                 <div class="text-2xl">🎬</div>
+                                <h4 class="font-bold"><a href="http://capcut.com" target="_blank" rel="noopener noreferrer" class="tool-link">CapCut</a></h4>
+                                <p class="text-sm text-slate-500">Edita y Finaliza</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="bg-amber-50/50 p-6 rounded-xl border border-amber-200">
+                         <h3 class="text-2xl font-semibold mb-4 text-slate-700">Los 4 Pilares de un Prompt Efectivo</h3>
+                         <div class="grid md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">1. Rol 🎭</h4>
+                                <p class="text-slate-600">Dile a la IA quién es. <span class="font-semibold text-amber-700">Ej: "Actúa como un guionista infantil experto."</span></p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">2. Contexto 🌍</h4>
+                                <p class="text-slate-600">Dale la información de fondo. <span class="font-semibold text-amber-700">Ej: "Es para niños de 3-5 años, para enseñarles a compartir."</span></p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">3. Tarea 🎯</h4>
+                                <p class="text-slate-600">Sé específico en lo que pides. <span class="font-semibold text-amber-700">Ej: "Genera 5 ideas de personajes y su problema principal."</span></p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">4. Formato 📑</h4>
+                                <p class="text-slate-600">Pide la respuesta como la necesitas. <span class="font-semibold text-amber-700">Ej: "Escribe el guion en formato de tabla, separando narrador y diálogos."</span></p>
+                            </div>
+                         </div>
+                    </article>
+                </section>
+
+                <section id="practica" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 1.3: Práctica Guiada</h2>
+                    <p class="mb-8 text-slate-600">Es hora de poner manos a la obra. Sigue estos ejercicios paso a paso para crear tu primer concepto. Usa los botones para copiar los prompts y pégalos en <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="tool-link">Gemini</a>.</p>
+                    
+                    <div class="space-y-8">
+                        <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 1: Lluvia de Ideas</h3>
+                            <p class="mb-4">Vamos a generar la materia prima de nuestra historia. Este prompt nos dará personajes, temas y títulos para empezar.</p>
+                            <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-amber-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>Actúa como un equipo de creativos de un estudio de animación infantil. Quiero crear un cuento corto para niños de 4 a 6 años. El valor principal que quiero enseñar es la **empatía**. Genera lo siguiente en un formato claro:
+1.  **5 temas o situaciones** donde se pueda explorar la empatía.
+2.  **5 personajes principales** originales que podrían protagonizar esta historia. Describe su especie (animal, objeto, etc.) y un rasgo de personalidad clave.
+3.  **5 posibles títulos** para el cuento.</code></pre>
+                            </div>
+                        </article>
+
+                         <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 2: Desarrollo del Concepto</h3>
+                            <p class="mb-4">Ahora, tomamos la mejor idea y le damos profundidad. Desarrollamos los personajes y la estructura de la historia.</p>
+                             <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-amber-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>Continuemos con el desarrollo del cuento. Mi personaje es un **robot de juguete llamado Bip-Bop que no entiende los sentimientos**, y el tema es **aprender a consolar a su amiga, una muñeca de trapo llamada Lila, que ha perdido su botón favorito**.
+
+Ahora, haz lo siguiente:
+1.  **Desarrolla al personaje de Bip-Bop:** Describe su apariencia (colores, forma), cómo se mueve y habla, y por qué le cuesta entender las emociones.
+2.  **Desarrolla a la personaje de Lila:** Describe su apariencia y cómo expresa su tristeza.
+3.  **Crea una estructura de la historia en 3 actos:**
+    * **Acto 1 (Inicio):** ¿Cómo se presenta el problema?
+    * **Acto 2 (Nudo):** ¿Qué intentos fallidos hace el protagonista? ¿Cómo aprende la lección?
+    * **Acto 3 (Desenlace):** ¿Cómo aplica lo aprendido? ¿Cuál es la moraleja?</code></pre>
+                            </div>
+                        </article>
+
+                         <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 3: Creación del Guion</h3>
+                            <p class="mb-4">Este es el paso final: convertir nuestra estructura en un guion detallado y formateado, listo para la producción.</p>
+                             <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-amber-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>Excelente. Ahora, usando toda la información anterior sobre Bip-Bop y Lila, **escribe un guion completo y detallado para un video animado de 3 a 4 minutos**.
+
+**Requisitos del formato:**
+* El público son niños de 4 a 6 años, usa un lenguaje sencillo y repetitivo.
+* Separa claramente las **DESCRIPCIONES DE ESCENA / ACCIONES** de los diálogos.
+* Usa **NARRADOR:** para la voz en off.
+* Usa **PERSONAJE:** para los diálogos.
+* Asegúrate de que el guion siga la estructura de 3 actos que definimos.</code></pre>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+                
+                <section id="evaluacion" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                     <h2 class="text-3xl font-bold mb-6 text-amber-600">🏆 Tu Misión Final: ¡A Crear!</h2>
+                    <p class="mb-6 text-slate-600">Has aprendido la teoría y has practicado con nuestros ejemplos. Ahora es tu turno de dirigir. Esta evaluación es el primer gran paso para crear tu propio proyecto, el cual desarrollaremos a lo largo de todo el curso.</p>
+                    
+                    <div class="bg-amber-50/50 p-6 rounded-xl border-2 border-dashed border-amber-300">
+                        <h3 class="text-2xl font-semibold mb-3 text-slate-700">Instrucciones del Proyecto</h3>
+                         <ol class="list-decimal list-inside space-y-3 text-slate-600">
+                            <li>Elige un **valor o lección** que quieras enseñar en un cuento (ej: honestidad, no rendirse, manejar el enojo, etc.).</li>
+                            <li>Abre <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="tool-link">Gemini</a> y, usando los **3 tipos de prompts** que practicaste (Lluvia de Ideas, Desarrollo, Guion), crea tu propio concepto desde cero.</li>
+                            <li>Al final, deberás tener dos documentos principales:
+                                <ul class="list-disc list-inside ml-6 mt-2 space-y-2 text-slate-500">
+                                    <li><span class="font-semibold text-slate-700">Concepto Central (1 página):</span> Título, personaje principal, conflicto y moraleja.</li>
+                                    <li><span class="font-semibold text-slate-700">Guion Completo (2-3 páginas):</span> El guion detallado y bien formateado.</li>
+                                </ul>
+                            </li>
+                             <li class="pt-4">
+                                <span class="font-bold text-amber-700">¡Guarda muy bien este trabajo!</span> Será la base para todo lo que haremos en los siguientes módulos: crear personajes, animar escenas y añadir música.
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section id="examen" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Examen Final del Módulo 1</h2>
+                    <p class="mb-8 text-slate-600">Es hora de comprobar lo que has aprendido. Selecciona la respuesta correcta para cada pregunta y luego haz clic en "Calificar Examen" para ver tu resultado.</p>
+                    
+                    <form id="exam-form">
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">1. ¿Qué es un "prompt" en el contexto de la IA Generativa?</p>
+                            <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="a" class="mr-3">Una imagen generada por la IA.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="b" class="mr-3">La instrucción o pregunta que le das a la IA.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="c" class="mr-3">El software que usa la IA para funcionar.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">2. ¿Cuál es la función principal de una IA de Texto como Gemini en nuestro flujo de trabajo?</p>
+                            <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="a" class="mr-3">Editar videos y añadir efectos especiales.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="b" class="mr-3">Crear música y efectos de sonido.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="c" class="mr-3">Planificar la historia, desarrollar personajes y escribir el guion.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">3. Si quieres crear la imagen de un personaje para tu cuento, ¿qué herramienta del ecosistema deberías usar?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="a" class="mr-3">Suno</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="b" class="mr-3">Google AI (de Imágenes)</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="c" class="mr-3">CapCut</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">4. ¿Cuál de los "4 Pilares de un Prompt Efectivo" se enfoca en decirle a la IA qué profesión o personalidad debe adoptar?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="a" class="mr-3">Contexto</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="b" class="mr-3">Tarea</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="c" class="mr-3">Rol</label></div>
+                            </div>
+                        </div>
+
+                         <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">5. Al pedirle a Gemini que escriba un guion, ¿qué pilar te ayuda a obtener la respuesta en un formato de tabla o lista?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="a" class="mr-3">Formato</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="b" class="mr-3">Rol</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="c" class="mr-3">Contexto</label></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-amber-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-600 transition-colors duration-300">Calificar Examen</button>
+                    </form>
+
+                    <div id="exam-results" class="mt-8 hidden"></div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const tabsNav = document.getElementById('tabs-nav');
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        const examForm = document.getElementById('exam-form');
+        const examResults = document.getElementById('exam-results');
+
+        tabsNav.addEventListener('click', (e) => {
+            e.preventDefault();
+            const clickedLink = e.target.closest('.tab-link');
+            if (!clickedLink) return;
+
+            tabLinks.forEach(link => link.classList.remove('tab-active'));
+            clickedLink.classList.add('tab-active');
+
+            const targetId = clickedLink.getAttribute('href').substring(1);
+            
+            tabContents.forEach(content => {
+                if (content.id === targetId) {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            });
+        });
+
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const promptBlock = button.nextElementSibling;
+                const textToCopy = promptBlock.textContent;
+
+                try {
+                    const tempTextArea = document.createElement('textarea');
+                    tempTextArea.value = textToCopy;
+                    document.body.appendChild(tempTextArea);
+                    tempTextArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempTextArea);
+                    
+                    const originalText = button.textContent;
+                    button.textContent = '¡Copiado!';
+                    button.style.backgroundColor = '#16a34a'; // green-600
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.backgroundColor = ''; // Revert to original color
+                    }, 2000);
+
+                } catch (err) {
+                    console.error('Error al copiar texto: ', err);
+                }
+            });
+        });
+
+        examForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const answers = {
+                q1: 'b',
+                q2: 'c',
+                q3: 'b',
+                q4: 'c',
+                q5: 'a'
+            };
+            let score = 0;
+            const totalQuestions = Object.keys(answers).length;
+            const formData = new FormData(examForm);
+            
+            let resultsHTML = '<h3 class="text-2xl font-bold mb-4">Resultados del Examen</h3>';
+            
+            for (const [question, correctAnswer] of Object.entries(answers)) {
+                const userAnswer = formData.get(question);
+                const questionElement = document.querySelector(`input[name="${question}"]`).closest('.exam-question');
+                const questionText = questionElement.querySelector('p').textContent;
+
+                resultsHTML += `<div class="p-4 mb-4 rounded-lg `
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    resultsHTML += `bg-green-100 border border-green-300">`;
+                    resultsHTML += `<p class="font-bold text-green-800">✓ Correcto: ${questionText}</p>`;
+                } else {
+                     resultsHTML += `bg-red-100 border border-red-300">`;
+                     resultsHTML += `<p class="font-bold text-red-800">✗ Incorrecto: ${questionText}</p>`;
+                     const correctLabel = document.querySelector(`input[name="${question}"][value="${correctAnswer}"]`).closest('label').textContent;
+                     resultsHTML += `<p class="text-red-700 mt-1">La respuesta correcta era: "${correctLabel.trim()}"</p>`;
+                }
+                 resultsHTML += `</div>`;
+            }
+
+            const percentage = (score / totalQuestions) * 100;
+            let summaryHTML = `<div class="text-center p-6 rounded-lg mb-6 ${percentage >= 80 ? 'bg-green-100' : 'bg-amber-100'}">
+                <h4 class="text-2xl font-bold">Tu Puntuación: ${score} de ${totalQuestions} (${percentage.toFixed(0)}%)</h4>
+                <p class="mt-2 font-medium">${percentage >= 80 ? '¡Excelente trabajo! Has dominado los conceptos de este módulo.' : '¡Buen intento! Repasa las lecciones para afianzar los conceptos.'}</p>
+            </div>`;
+
+            examResults.innerHTML = summaryHTML + resultsHTML;
+            examResults.classList.remove('hidden');
+            examResults.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>

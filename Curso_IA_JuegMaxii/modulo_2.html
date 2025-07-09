@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Creación de Personajes y Escenarios</title>
+    <link href="dist/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Cool Neutrals (Indigo/Sky/Slate) -->
+    <!-- Application Structure Plan: A 'Visual Lab' SPA with vertical tabs (Conceptos, Taller, Práctica, Misión, Examen). This structure logically separates theory from practice. It focuses on teaching visual consistency and prompt engineering for images. Key interactions include tabbed content, prompt copying, and an interactive final exam. -->
+    <!-- Visualization & Content Choices: Visual style examples are shown in side-by-side cards (Compare Goal). Character consistency is explained with a step-by-step visual guide (HTML/CSS) (Organize Goal). Exercises feature 'copy' buttons for practical application (Interaction). The final mission is a clear checklist (Inform Goal). The exam provides instant feedback (Interaction Goal). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f9ff; /* sky-50 */
+        }
+        .tab-active {
+            background-color: #3b82f6; /* blue-500 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .prompt-block {
+            background-color: #1e293b; /* slate-800 */
+            color: #f1f5f9; /* slate-100 */
+            border-left: 4px solid #3b82f6; /* blue-500 */
+        }
+        .copy-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .tool-link {
+            text-decoration: underline;
+            font-weight: 600;
+            color: #1d4ed8; /* blue-700 */
+        }
+         .tool-link:hover {
+            color: #3b82f6; /* blue-500 */
+        }
+        .exam-question {
+            background-color: #f8fafc; /* slate-50 */
+            border: 1px solid #e2e8f0; /* slate-200 */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .exam-option label:hover {
+            background-color: #eff6ff; /* blue-50 */
+        }
+    </style>
+</head>
+<body class="bg-sky-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Módulo 2: Laboratorio de Creación Visual 🎨</h1>
+            <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">Es hora de darle vida a tu guion. En este módulo, aprenderás a ser el director de arte de tu proyecto, creando personajes y escenarios consistentes.</p>
+        </header>
+
+        <main class="flex flex-col md:flex-row gap-8">
+            <nav id="tabs-nav" class="md:w-1/4 flex flex-row md:flex-col justify-start md:justify-start overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
+                <a href="#conceptos" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-blue-200 tab-active">🖼️ Conceptos Clave</a>
+                <a href="#taller" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-blue-200">✍️ Taller de Prompts</a>
+                <a href="#practica" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-blue-200">🤸 Práctica Guiada</a>
+                <a href="#evaluacion" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-blue-200">🏆 Tu Misión Final</a>
+                <a href="#examen" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-blue-200">📝 Examen Final</a>
+            </nav>
+
+            <div class="md:w-3/4">
+                <section id="conceptos" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 2.0: El Poder de la Consistencia Visual</h2>
+                    <p class="mb-8 text-slate-600">En el Módulo 1 fuimos los guionistas. Ahora, nos ponemos el sombrero de Director de Arte. Nuestro objetivo principal es que el mundo que creemos se sienta real y coherente. Un personaje no puede verse diferente en cada escena. Aquí aprenderás los dos pilares para lograrlo: el Estilo Visual y la Hoja de Personaje.</p>
+
+                    <div class="space-y-6">
+                        <article class="bg-sky-50/50 p-6 rounded-xl border border-sky-200">
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Definiendo tu Estilo Visual</h3>
+                            <p class="mb-4">El estilo es el "look & feel" de tu animación. ¿Es un dibujo animado clásico? ¿Parece hecho de plastilina? Definir esto primero es crucial. La IA de imágenes de Google puede generar muchos estilos, solo tienes que pedírselo.</p>
+                            <div class="grid md:grid-cols-2 gap-4 text-center">
+                                <div class="p-4 bg-white rounded-lg shadow-sm">
+                                    <h4 class="font-bold text-slate-800">Estilo: "Libro de Cuentos"</h4>
+                                    <p class="text-sm text-slate-500 mt-1">Ideal para narrativas clásicas. Usa frases como "ilustración de libro infantil con acuarelas".</p>
+                                </div>
+                                <div class="p-4 bg-white rounded-lg shadow-sm">
+                                    <h4 class="font-bold text-slate-800">Estilo: "3D Tipo Pixar"</h4>
+                                    <p class="text-sm text-slate-500 mt-1">Moderno y popular. Usa frases como "personaje 3D renderizado, estilo de animación de película".</p>
+                                </div>
+                                 <div class="p-4 bg-white rounded-lg shadow-sm">
+                                    <h4 class="font-bold text-slate-800">Estilo: "Arte en Plastilina"</h4>
+                                    <p class="text-sm text-slate-500 mt-1">Táctil y único. Usa frases como "estilo claymation, arte en plastilina, stop-motion".</p>
+                                </div>
+                                <div class="p-4 bg-white rounded-lg shadow-sm">
+                                    <h4 class="font-bold text-slate-800">Estilo: "Dibujo Animado 2D"</h4>
+                                    <p class="text-sm text-slate-500 mt-1">Simple y claro. Usa frases como "dibujo animado 2D, líneas gruesas, colores planos".</p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="bg-sky-50/50 p-6 rounded-xl border border-sky-200">
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">La Hoja de Personaje (Character Sheet)</h3>
+                            <p class="mb-4">Este es el truco más importante para la consistencia. Una "hoja de personaje" es un conjunto de imágenes de tu personaje en diferentes poses y expresiones, pero manteniendo siempre el mismo diseño. Al generar estas imágenes de referencia primero, luego puedes usarlas para guiar a la IA en las escenas del video.</p>
+                             <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800 text-lg">Flujo de trabajo:</h4>
+                                <p class="text-slate-600 mt-1">1. Crea la vista frontal del personaje → 2. Pide la vista de perfil "del mismo personaje" → 3. Pide diferentes expresiones "del mismo personaje".</p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="taller" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 2.1: Taller de Prompts Visuales</h2>
+                    <p class="mb-8 text-slate-600">Escribir prompts para imágenes es un poco diferente a escribirlos para texto. La clave es ser un buen "descriptor". Tienes que pintar una imagen con tus palabras, siendo lo más detallado posible.</p>
+                    
+                    <article class="bg-sky-50/50 p-6 rounded-xl border border-sky-200">
+                         <h3 class="text-2xl font-semibold mb-4 text-slate-700">La Anatomía de un Prompt Visual Efectivo</h3>
+                         <div class="grid md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">1. Sujeto Principal 🧍</h4>
+                                <p class="text-slate-600">¿Qué o quién es lo más importante en la imagen? Sé específico. No digas "un zorro", di "un zorro bebé anaranjado".</p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">2. Atributos y Ropa 👕</h4>
+                                <p class="text-slate-600">Describe los detalles. "Con ojos grandes y curiosos, usando un pequeño chaleco azul".</p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">3. Acción o Pose 🤸</h4>
+                                <p class="text-slate-600">¿Qué está haciendo el sujeto? "De pie en dos patas, saludando felizmente".</p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">4. Estilo Visual (¡Muy Importante!) 🎨</h4>
+                                <p class="text-slate-600">Aquí defines el look. "Estilo de ilustración de libro infantil con acuarelas, colores suaves".</p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm col-span-2">
+                                <h4 class="font-bold text-slate-800">5. Composición y Fondo 🖼️</h4>
+                                <p class="text-slate-600">¿Cómo es el encuadre? ¿Qué hay detrás? "Vista de frente, personaje centrado, fondo blanco".</p>
+                            </div>
+                         </div>
+                    </article>
+                </section>
+
+                <section id="practica" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 2.2: Práctica Guiada</h2>
+                    <p class="mb-8 text-slate-600">Vamos a aplicar lo aprendido. Usaremos el guion que creaste en el Módulo 1. Sigue los pasos y copia los prompts en la herramienta de IA de imágenes de <a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer" class="tool-link">Google</a>.</p>
+                    
+                    <div class="space-y-8">
+                        <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 1: Definir Estilo y Crear Personaje Principal</h3>
+                            <p class="mb-4">Primero, creamos la vista frontal de nuestro protagonista. Este será nuestro "ancla" visual. Reemplaza los detalles con los de tu personaje.</p>
+                            <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-blue-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-blue-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>Un [tu personaje, ej: zorro bebé anaranjado], amigable y [rasgo, ej: tímido], con [detalle 1, ej: ojos grandes y curiosos], usando [ropa, ej: un pequeño chaleco azul].
+
+Estilo: [tu estilo, ej: ilustración de libro infantil con acuarelas, colores suaves].
+
+Composición: Vista de frente, cuerpo completo, personaje centrado, fondo blanco simple.</code></pre>
+                            </div>
+                        </article>
+
+                         <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 2: Crear la Hoja de Personaje</h3>
+                            <p class="mb-4">Ahora, generamos las otras vistas para asegurar la consistencia. La frase clave es "mismo personaje y estilo".</p>
+                             <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-blue-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-blue-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>Usando el mismo personaje y estilo de la imagen anterior, muéstralo ahora de perfil, mirando hacia la izquierda.
+
+Composición: Vista de perfil, cuerpo completo, personaje centrado, fondo blanco simple.</code></pre>
+                            </div>
+                             <div class="prompt-block p-4 mt-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-blue-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-blue-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>Usando el mismo personaje y estilo, muéstralo ahora con una expresión [emoción, ej: muy feliz y sonriente], abrazando un [objeto, ej: oso de peluche].
+
+Composición: Vista frontal, personaje centrado, fondo blanco simple.</code></pre>
+                            </div>
+                        </article>
+
+                         <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 3: Crear un Escenario</h3>
+                            <p class="mb-4">Finalmente, creamos uno de los fondos para nuestra historia, asegurándonos de que coincida con el estilo visual que hemos definido.</p>
+                             <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-blue-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-blue-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>Un [lugar, ej: acogedor interior de una madriguera de zorro], con [detalle 1, ej: una pequeña cama de hojas] y [detalle 2, ej: una ventana redonda por la que entra luz suave].
+
+Estilo: [mismo estilo, ej: ilustración de libro infantil con acuarelas, colores suaves], sin personajes.</code></pre>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+                
+                <section id="evaluacion" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                     <h2 class="text-3xl font-bold mb-6 text-blue-600">🏆 Tu Misión Final: Construye tu Mundo</h2>
+                    <p class="mb-6 text-slate-600">Has aprendido a ser un director de arte. Ahora es el momento de construir el mundo visual para el guion que creaste en el Módulo 1. Este es un paso crucial para dar vida a tu historia.</p>
+                    
+                    <div class="bg-sky-50/50 p-6 rounded-xl border-2 border-dashed border-sky-300">
+                        <h3 class="text-2xl font-semibold mb-3 text-slate-700">Lista de Tareas (Entregables)</h3>
+                         <ol class="list-decimal list-inside space-y-3 text-slate-600">
+                            <li>**Define tu Estilo Visual:** Escribe en una frase el estilo que has elegido para tu proyecto (ej: "Estilo de dibujo animado 2D con colores brillantes").</li>
+                            <li>**Crea la Hoja de Personaje (Character Sheet):**
+                                <ul class="list-disc list-inside ml-6 mt-2 space-y-2 text-slate-500">
+                                    <li>Genera y guarda la imagen de tu **personaje principal en vista frontal**.</li>
+                                    <li>Genera y guarda la imagen de tu **personaje principal en vista de perfil**.</li>
+                                    <li>Genera y guarda al menos **dos expresiones clave** (ej: feliz, triste) de tu personaje.</li>
+                                    <li>Si tienes un personaje secundario, repite el proceso.</li>
+                                </ul>
+                            </li>
+                             <li>**Crea los Escenarios Principales:**
+                                <ul class="list-disc list-inside ml-6 mt-2 space-y-2 text-slate-500">
+                                     <li>Genera y guarda al menos **dos escenarios o fondos** diferentes que aparezcan en tu guion (ej: el interior de la casa, el bosque).</li>
+                                </ul>
+                            </li>
+                             <li class="pt-4">
+                                <span class="font-bold text-blue-700">¡Organiza estas imágenes en una carpeta!</span> Las usaremos constantemente en el Módulo 3 para empezar a animar.
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section id="examen" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Examen Final del Módulo 2</h2>
+                    <p class="mb-8 text-slate-600">Comprueba tus conocimientos sobre dirección de arte con IA. Selecciona la respuesta correcta y califica tu examen al final.</p>
+                    
+                    <form id="exam-form">
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">1. ¿Cuál es el objetivo principal de crear una "Hoja de Personaje" (Character Sheet)?</p>
+                            <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="a" class="mr-3">Escribir la biografía del personaje.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="b" class="mr-3">Asegurar que el diseño del personaje sea consistente en todas las escenas.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="c" class="mr-3">Decidir el nombre final del personaje.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">2. ¿Cuál de los siguientes elementos es el más importante en un prompt para mantener un look coherente en todas tus imágenes?</p>
+                            <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="a" class="mr-3">La descripción de la acción.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="b" class="mr-3">La definición del "Estilo Visual".</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="c" class="mr-3">El nombre del personaje.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">3. Si tu prompt es "Un gato negro", ¿qué le falta para ser un buen prompt visual?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="a" class="mr-3">No le falta nada, es corto y directo.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="b" class="mr-3">Detalles sobre atributos, acción, estilo y composición.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="c" class="mr-3">El enlace a la herramienta de IA.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">4. ¿Para qué generamos los escenarios sin personajes?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="a" class="mr-3">Para tener fondos limpios sobre los que animaremos a los personajes más tarde.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="b" class="mr-3">Porque la IA no puede generar personajes y fondos al mismo tiempo.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="c" class="mr-3">Para ahorrar dinero en la producción.</label></div>
+                            </div>
+                        </div>
+
+                         <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">5. ¿Cuál es el primer paso recomendado en el flujo de trabajo de este módulo?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="a" class="mr-3">Crear los escenarios.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="b" class="mr-3">Escribir el guion.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="c" class="mr-3">Definir el estilo visual y crear la vista frontal del personaje principal.</label></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-blue-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-600 transition-colors duration-300">Calificar Examen</button>
+                    </form>
+
+                    <div id="exam-results" class="mt-8 hidden"></div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const tabsNav = document.getElementById('tabs-nav');
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        const examForm = document.getElementById('exam-form');
+        const examResults = document.getElementById('exam-results');
+
+        tabsNav.addEventListener('click', (e) => {
+            e.preventDefault();
+            const clickedLink = e.target.closest('.tab-link');
+            if (!clickedLink) return;
+
+            tabLinks.forEach(link => link.classList.remove('tab-active'));
+            clickedLink.classList.add('tab-active');
+
+            const targetId = clickedLink.getAttribute('href').substring(1);
+            
+            tabContents.forEach(content => {
+                if (content.id === targetId) {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            });
+        });
+
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const promptBlock = button.nextElementSibling;
+                const textToCopy = promptBlock.textContent;
+
+                try {
+                    const tempTextArea = document.createElement('textarea');
+                    tempTextArea.value = textToCopy;
+                    document.body.appendChild(tempTextArea);
+                    tempTextArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempTextArea);
+                    
+                    const originalText = button.textContent;
+                    button.textContent = '¡Copiado!';
+                    button.style.backgroundColor = '#16a34a'; // green-600
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.backgroundColor = ''; // Revert to original color
+                    }, 2000);
+
+                } catch (err) {
+                    console.error('Error al copiar texto: ', err);
+                }
+            });
+        });
+
+        examForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const answers = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'b',
+                q4: 'a',
+                q5: 'c'
+            };
+            let score = 0;
+            const totalQuestions = Object.keys(answers).length;
+            const formData = new FormData(examForm);
+            
+            let resultsHTML = '<h3 class="text-2xl font-bold mb-4">Resultados del Examen</h3>';
+            
+            for (const [question, correctAnswer] of Object.entries(answers)) {
+                const userAnswer = formData.get(question);
+                const questionElement = document.querySelector(`input[name="${question}"]`).closest('.exam-question');
+                const questionText = questionElement.querySelector('p').textContent;
+
+                resultsHTML += `<div class="p-4 mb-4 rounded-lg `
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    resultsHTML += `bg-green-100 border border-green-300">`;
+                    resultsHTML += `<p class="font-bold text-green-800">✓ Correcto: ${questionText}</p>`;
+                } else {
+                     resultsHTML += `bg-red-100 border border-red-300">`;
+                     resultsHTML += `<p class="font-bold text-red-800">✗ Incorrecto: ${questionText}</p>`;
+                     const correctLabel = document.querySelector(`input[name="${question}"][value="${correctAnswer}"]`).closest('label').textContent;
+                     resultsHTML += `<p class="text-red-700 mt-1">La respuesta correcta era: "${correctLabel.trim()}"</p>`;
+                }
+                 resultsHTML += `</div>`;
+            }
+
+            const percentage = (score / totalQuestions) * 100;
+            let summaryHTML = `<div class="text-center p-6 rounded-lg mb-6 ${percentage >= 80 ? 'bg-green-100' : 'bg-blue-100'}">
+                <h4 class="text-2xl font-bold">Tu Puntuación: ${score} de ${totalQuestions} (${percentage.toFixed(0)}%)</h4>
+                <p class="mt-2 font-medium">${percentage >= 80 ? '¡Excelente trabajo! Eres un gran director de arte.' : '¡Buen intento! Repasa las lecciones para afianzar los conceptos.'}</p>
+            </div>`;
+
+            examResults.innerHTML = summaryHTML + resultsHTML;
+            examResults.classList.remove('hidden');
+            examResults.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>

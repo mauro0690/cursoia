@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso: Creación de Contenido Infantil con IA</title>
+    <link href="dist/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Launch Gold/Gray/Slate -->
+    <!-- Application Structure Plan: A 'Launch Lab' SPA with vertical tabs (Conceptos, Taller, Práctica, Misión, Examen, Felicitaciones). This final module focuses on distribution and marketing, shifting from creation to promotion. It teaches how to leverage the initial script for marketing materials. -->
+    <!-- Visualization & Content Choices: The content repurposing strategy is a clear HTML/CSS flowchart (Inform Goal). Prompting for marketing materials is detailed on interactive cards (Organize Goal). Exercises use copyable prompts for Gemini (Interaction). The final mission is a launch checklist (Inform Goal). The exam provides instant feedback (Interaction Goal). The new congratulations screen serves as a motivational closing. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefce8; /* yellow-50 */
+        }
+        .tab-active {
+            background-color: #ca8a04; /* yellow-600 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .prompt-block {
+            background-color: #1e293b; /* slate-800 */
+            color: #f1f5f9; /* slate-100 */
+            border-left: 4px solid #ca8a04; /* yellow-600 */
+        }
+        .copy-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .tool-link {
+            text-decoration: underline;
+            font-weight: 600;
+            color: #a16207; /* yellow-700 */
+        }
+         .tool-link:hover {
+            color: #eab308; /* yellow-500 */
+        }
+        .exam-question {
+            background-color: #f8fafc; /* slate-50 */
+            border: 1px solid #e2e8f0; /* slate-200 */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .exam-option label:hover {
+            background-color: #fef9c3; /* yellow-100 */
+        }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease;
+        }
+        .checklist-item:hover {
+            background-color: #fefce8;
+        }
+        .checklist-item .icon {
+            flex-shrink: 0;
+            margin-right: 0.75rem;
+            color: #ca8a04;
+        }
+        .confetti-bg {
+            background-image: radial-gradient(#ca8a04 1px, transparent 1px);
+            background-size: 15px 15px;
+        }
+    </style>
+</head>
+<body class="bg-yellow-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Curso: Creación de Contenido Infantil con IA</h1>
+            <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">Un viaje completo desde la idea hasta la publicación de tu propia animación.</p>
+        </header>
+
+        <main class="flex flex-col md:flex-row gap-8">
+            <nav id="tabs-nav" class="md:w-1/4 flex flex-row md:flex-col justify-start md:justify-start overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
+                <a href="#conceptos" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-yellow-200 tab-active">Módulo 6: 📈 Estrategia</a>
+                <a href="#taller" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-yellow-200">✍️ Taller de Prompts</a>
+                <a href="#practica" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-yellow-200">🤸 Práctica Guiada</a>
+                <a href="#evaluacion" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-yellow-200">🏆 Misión Final</a>
+                <a href="#examen" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-yellow-200">📝 Examen Final</a>
+                <a href="#felicitaciones" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-yellow-200">🎉 ¡Felicitaciones!</a>
+            </nav>
+
+            <div class="md:w-3/4">
+                <section id="conceptos" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 6.0: El Lanzamiento Estratégico</h2>
+                    <p class="mb-8 text-slate-600">Crear un video increíble es solo la mitad del trabajo. La otra mitad es asegurarse de que la gente lo encuentre y lo vea. En este módulo, nos enfocaremos en dos estrategias clave: la **Optimización para Plataformas** y la **Reutilización de Contenido**.</p>
+
+                    <div class="space-y-6">
+                        <article class="bg-yellow-50/50 p-6 rounded-xl border border-yellow-200">
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Optimización con Metadatos</h3>
+                            <p class="mb-4">Los "metadatos" son la información que le das a plataformas como YouTube para que entiendan de qué trata tu video. Son cruciales para que el algoritmo lo recomiende a la audiencia correcta. Volveremos a usar a nuestro guionista, <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="tool-link">Gemini</a>, para crearlos.</p>
+                            <ul class="list-disc list-inside space-y-2 text-slate-600">
+                                <li><strong>Título Atractivo:</strong> Debe ser claro y despertar curiosidad.</li>
+                                <li><strong>Descripción Optimizada:</strong> Un resumen que incluye palabras clave sobre el tema y la moraleja de tu cuento.</li>
+                                <li><strong>Hashtags Relevantes:</strong> Etiquetas que ayudan a categorizar tu video (ej: #cuentosinfantiles, #animacion, #valoresparaniños).</li>
+                            </ul>
+                        </article>
+
+                        <article class="bg-yellow-50/50 p-6 rounded-xl border border-yellow-200">
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Reutilización de Contenido: Trabaja Inteligentemente</h3>
+                            <p class="mb-4">No tienes que crear contenido nuevo para cada red social. La estrategia más inteligente es reutilizar tu video principal y adaptarlo a otros formatos, especialmente al formato vertical de plataformas como TikTok, Instagram Reels y YouTube Shorts.</p>
+                             <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800 text-lg">El Ciclo de Contenido:</h4>
+                                <div class="flex items-center justify-center space-x-4 mt-2">
+                                    <div class="text-center">
+                                        <div class="text-3xl">🎬</div>
+                                        <p class="font-semibold">Tu Video Largo</p>
+                                        <p class="text-xs text-slate-500">(YouTube)</p>
+                                    </div>
+                                    <div class="text-3xl font-bold text-yellow-500">→</div>
+                                    <div class="text-center">
+                                        <div class="text-3xl">✂️</div>
+                                        <p class="font-semibold">Extraer Clips</p>
+                                        <p class="text-xs text-slate-500">(Usando CapCut)</p>
+                                    </div>
+                                    <div class="text-3xl font-bold text-yellow-500">→</div>
+                                     <div class="text-center">
+                                        <div class="text-3xl">📱</div>
+                                        <p class="font-semibold">Videos Verticales</p>
+                                        <p class="text-xs text-slate-500">(TikTok, Reels, Shorts)</p>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-600 mt-3">Estos clips cortos actúan como "tráilers" que atraen a la gente a ver tu video completo en YouTube.</p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="taller" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 6.1: Taller de Prompts de Marketing</h2>
+                    <p class="mb-8 text-slate-600">Vamos a darle un nuevo rol a Gemini: el de Director de Marketing. Usaremos el guion que creamos en el Módulo 1 como la "fuente de la verdad" para generar todo el material de promoción. Esto asegura que el mensaje sea siempre consistente.</p>
+                    
+                    <article class="bg-yellow-50/50 p-6 rounded-xl border border-yellow-200">
+                         <h3 class="text-2xl font-semibold mb-4 text-slate-700">Componentes de un Prompt de Marketing</h3>
+                         <div class="space-y-4">
+                            <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">1. Rol Específico 🎭</h4>
+                                <p class="text-slate-600">Dile a la IA que sea un experto en la plataforma que te interesa.</p>
+                                <p class="text-sm font-semibold text-yellow-700 mt-2">Ejemplo: "Actúa como un experto en marketing de YouTube especializado en contenido infantil."</p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">2. Contexto (El Material Fuente) 📝</h4>
+                                <p class="text-slate-600">Dale el guion o un resumen de tu historia. Es la información más importante que necesita.</p>
+                                <p class="text-sm font-semibold text-yellow-700 mt-2">Ejemplo: "Basado en el siguiente guion sobre un zorro que aprende a compartir..."</p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">3. Tareas Claras y Separadas 🎯</h4>
+                                <p class="text-slate-600">Pide cada cosa por separado para obtener mejores resultados.</p>
+                                <p class="text-sm font-semibold text-yellow-700 mt-2">Ejemplo: "1. Genera 5 opciones de títulos. 2. Escribe una descripción de 150 palabras. 3. Crea una lista de 20 hashtags."</p>
+                            </div>
+                         </div>
+                    </article>
+                </section>
+
+                <section id="practica" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 6.2: Práctica Guiada</h2>
+                    <p class="mb-8 text-slate-600">Vamos a preparar el lanzamiento de tu video. Copia tu guion del Módulo 1 y úsalo con los siguientes prompts en <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="tool-link">Gemini</a>.</p>
+                    
+                    <div class="space-y-8">
+                        <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 1: Generar Metadatos para YouTube</h3>
+                            <p class="mb-4">Este prompt te dará todo lo que necesitas para rellenar los campos cuando subas tu video a YouTube.</p>
+                            <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-yellow-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-yellow-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>Actúa como un experto en marketing de YouTube especializado en contenido infantil.
+
+Basado en el siguiente guion:
+[Pega aquí tu guion completo del Módulo 1]
+
+Genera lo siguiente en un formato claro y separado:
+1.  **5 opciones de títulos atractivos y optimizados para búsqueda.** Deben incluir el tema principal o la moraleja.
+2.  **Una descripción para YouTube de aproximadamente 150 palabras.** Debe resumir la historia, mencionar la lección aprendida y terminar con un llamado a la acción (ej: "¡No olvides suscribirte!").
+3.  **Una lista de 20 hashtags relevantes,** mezclando etiquetas generales (#cuentosparadormir) y específicas (#ElZorroGeneroso).</code></pre>
+                            </div>
+                        </article>
+
+                         <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 2: Crear Ideas para Videos Cortos</h3>
+                            <p class="mb-4">Ahora, vamos a generar ideas para los "tráilers" que promocionarán tu video en formato vertical.</p>
+                             <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-yellow-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-yellow-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>Actúa como un creador de contenido experto en TikTok e Instagram Reels.
+
+Basado en el guion anterior, genera 3 ideas para videos cortos (15-20 segundos) para promocionar el cuento. Para cada idea, describe:
+1.  **El Momento Clave:** ¿Qué parte del video largo deberíamos mostrar? (ej: "El momento en que Bip-Bop intenta consolar a Lila con una batería").
+2.  **Texto en Pantalla:** ¿Qué texto llamativo podemos poner sobre el video? (ej: "¿Puede un robot aprender a sentir?").
+3.  **Llamado a la Acción (CTA):** ¿Qué le decimos al espectador? (ej: "¡Mira el cuento completo en nuestro canal de YouTube! Link en la bio.").</code></pre>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+                
+                <section id="evaluacion" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                     <h2 class="text-3xl font-bold mb-6 text-yellow-600">🏆 Tu Misión Final: ¡Lanza tu Creación!</h2>
+                    <p class="mb-6 text-slate-600">¡Es el día del estreno! Tu misión final es tomar el video que editaste en el Módulo 5 y publicarlo en YouTube, y luego promocionarlo en otras redes.</p>
+                    
+                    <div class="bg-yellow-50/50 p-6 rounded-xl border-2 border-dashed border-yellow-300">
+                        <h3 class="text-2xl font-semibold mb-3 text-slate-700">Checklist de Lanzamiento</h3>
+                         <ol class="list-decimal list-inside space-y-3 text-slate-600">
+                            <li>**Prepara tus Metadatos:** Usa los prompts de la práctica para generar tus títulos, descripción y hashtags. Elige tu título favorito.</li>
+                            <li>**Sube tu Video a YouTube:** Ve a tu canal de YouTube, sube el video final y rellena los campos de título, descripción y etiquetas (hashtags) con el material que generaste.</li>
+                            <li>**Crea una Miniatura Atractiva:** Usa una de las imágenes que generaste en el Módulo 2 (o una captura de pantalla del video) para crear una miniatura llamativa.</li>
+                            <li>**Publica tu Video.**</li>
+                            <li>**Crea y Publica un Video Corto:** Vuelve a CapCut, abre tu proyecto, cambia el formato a vertical (9:16) y edita un clip corto de 15-20 segundos basado en una de las ideas que generaste. Añade texto llamativo.</li>
+                            <li>**Publica tu video corto** en TikTok, Instagram Reels y/o YouTube Shorts, y no olvides añadir un enlace a tu video completo de YouTube en tu perfil.</li>
+                             <li class="pt-4">
+                                <span class="font-bold text-yellow-700">¡Felicidades!</span> Has completado todo el ciclo de producción y publicación. ¡Eres oficialmente un creador de contenido con IA!
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section id="examen" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Examen Final del Módulo 6</h2>
+                    <p class="mb-8 text-slate-600">Demuestra que eres un estratega de contenido y que sabes cómo hacer que tus creaciones lleguen a su público.</p>
+                    
+                    <form id="exam-form">
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">1. ¿Qué son los "metadatos" en el contexto de YouTube?</p>
+                            <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="a" class="mr-3">Los efectos especiales del video.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="b" class="mr-3">El título, la descripción y los hashtags que ayudan a describir el video.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="c" class="mr-3">Los comentarios que dejan los usuarios.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">2. ¿Cuál es la principal ventaja de la "reutilización de contenido"?</p>
+                            <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="a" class="mr-3">Ahorrar tiempo creando contenido para diferentes plataformas a partir de un video principal.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="b" class="mr-3">Hacer que el video principal sea más largo.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="c" class="mr-3">Mejorar la calidad de la música.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">3. ¿Qué herramienta de IA es la más adecuada para generar títulos y descripciones?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="a" class="mr-3">Suno</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="b" class="mr-3">CapCut</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="c" class="mr-3">Gemini</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">4. ¿Cuál es el propósito de crear videos cortos verticales para TikTok o Reels?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="a" class="mr-3">Para reemplazar completamente el video largo de YouTube.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="b" class="mr-3">Para actuar como "tráilers" o anuncios que atraen gente al video completo.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="c" class="mr-3">Porque son más fáciles de editar.</label></div>
+                            </div>
+                        </div>
+
+                         <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">5. ¿Qué información es la más importante para darle a Gemini al pedirle que cree material de marketing?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="a" class="mr-3">El guion original de la historia.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="b" class="mr-3">La duración exacta del video.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="c" class="mr-3">La lista de colores usados en la animación.</label></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-yellow-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-yellow-700 transition-colors duration-300">Calificar Examen</button>
+                    </form>
+
+                    <div id="exam-results" class="mt-8 hidden"></div>
+                </section>
+                
+                <section id="felicitaciones" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden confetti-bg">
+                    <div class="text-center">
+                        <div class="text-6xl mb-4">🎉</div>
+                        <h2 class="text-4xl font-bold mb-4 text-slate-900">¡Felicidades, Creador!</h2>
+                        <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-8">Has completado exitosamente el curso de Creación de Contenido Infantil con IA. Has viajado desde la chispa de una idea hasta un video finalizado y publicado. Este es un logro inmenso y el primer paso en tu nueva y emocionante aventura como creador de contenido.</p>
+                        
+                        <div class="bg-yellow-100/80 p-6 rounded-xl border border-yellow-300">
+                             <h3 class="text-2xl font-semibold mb-3 text-yellow-800">Tu Viaje Continúa con Apoyo</h3>
+                             <p class="text-yellow-900">Recuerda que tu aprendizaje no termina aquí. Mientras hagas parte del **Grupo de Suscriptores de Juega Maxii**, tendrás acceso a **asesoría personalizada** directamente conmigo. Si tienes cualquier duda en tus futuros proyectos, no dudes en contactarme. Estoy aquí para ayudarte a resolver todos tus desafíos creativos.</p>
+                        </div>
+
+                        <p class="text-lg text-slate-600 max-w-2xl mx-auto mt-8">Te deseo todo el éxito del mundo en tus futuros proyectos audiovisuales. ¡Ahora sal y crea historias maravillosas!</p>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const tabsNav = document.getElementById('tabs-nav');
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        const examForm = document.getElementById('exam-form');
+        const examResults = document.getElementById('exam-results');
+
+        tabsNav.addEventListener('click', (e) => {
+            e.preventDefault();
+            const clickedLink = e.target.closest('.tab-link');
+            if (!clickedLink) return;
+
+            tabLinks.forEach(link => link.classList.remove('tab-active'));
+            clickedLink.classList.add('tab-active');
+
+            const targetId = clickedLink.getAttribute('href').substring(1);
+            
+            tabContents.forEach(content => {
+                if (content.id === targetId) {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            });
+        });
+
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const promptBlock = button.nextElementSibling;
+                const textToCopy = promptBlock.textContent;
+
+                try {
+                    const tempTextArea = document.createElement('textarea');
+                    tempTextArea.value = textToCopy;
+                    document.body.appendChild(tempTextArea);
+                    tempTextArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempTextArea);
+                    
+                    const originalText = button.textContent;
+                    button.textContent = '¡Copiado!';
+                    button.style.backgroundColor = '#16a34a'; // green-600
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.backgroundColor = ''; // Revert to original color
+                    }, 2000);
+
+                } catch (err) {
+                    console.error('Error al copiar texto: ', err);
+                }
+            });
+        });
+
+        if (examForm) {
+            examForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const answers = {
+                    q1: 'b',
+                    q2: 'a',
+                    q3: 'c',
+                    q4: 'b',
+                    q5: 'a'
+                };
+                let score = 0;
+                const totalQuestions = Object.keys(answers).length;
+                const formData = new FormData(examForm);
+                
+                let resultsHTML = '<h3 class="text-2xl font-bold mb-4">Resultados del Examen</h3>';
+                
+                for (const [question, correctAnswer] of Object.entries(answers)) {
+                    const userAnswer = formData.get(question);
+                    const questionElement = document.querySelector(`input[name="${question}"]`).closest('.exam-question');
+                    const questionText = questionElement.querySelector('p').textContent;
+
+                    resultsHTML += `<div class="p-4 mb-4 rounded-lg `
+                    if (userAnswer === correctAnswer) {
+                        score++;
+                        resultsHTML += `bg-green-100 border border-green-300">`;
+                        resultsHTML += `<p class="font-bold text-green-800">✓ Correcto: ${questionText}</p>`;
+                    } else {
+                         resultsHTML += `bg-red-100 border border-red-300">`;
+                         resultsHTML += `<p class="font-bold text-red-800">✗ Incorrecto: ${questionText}</p>`;
+                         const correctLabel = document.querySelector(`input[name="${question}"][value="${correctAnswer}"]`).closest('label').textContent;
+                         resultsHTML += `<p class="text-red-700 mt-1">La respuesta correcta era: "${correctLabel.trim()}"</p>`;
+                    }
+                     resultsHTML += `</div>`;
+                }
+
+                const percentage = (score / totalQuestions) * 100;
+                let summaryHTML = `<div class="text-center p-6 rounded-lg mb-6 ${percentage >= 80 ? 'bg-green-100' : 'bg-yellow-100'}">
+                    <h4 class="text-2xl font-bold">Tu Puntuación: ${score} de ${totalQuestions} (${percentage.toFixed(0)}%)</h4>
+                    <p class="mt-2 font-medium">${percentage >= 80 ? '¡Lanzamiento exitoso! Eres un estratega de contenido con IA.' : '¡Buen trabajo! Unos pocos ajustes y dominarás el marketing digital.'}</p>
+                </div>`;
+
+                examResults.innerHTML = summaryHTML + resultsHTML;
+                examResults.classList.remove('hidden');
+                examResults.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+    </script>
+
+</body>
+</html>

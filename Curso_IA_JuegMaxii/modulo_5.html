@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 5: Edición y Post-producción en CapCut</title>
+    <link href="dist/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Professional Green/Emerald/Slate -->
+    <!-- Application Structure Plan: An 'Editing Lab' SPA with vertical tabs (Conceptos, Taller, Práctica, Misión, Examen). This structure guides the student through the final assembly process in CapCut, focusing on practical, UI-based tasks rather than prompt engineering. -->
+    <!-- Visualization & Content Choices: The editing workflow is a clear HTML/CSS flowchart (Inform Goal). Key editing techniques are on descriptive cards (Organize Goal). The practice section is a step-by-step checklist for assembling a scene (Interaction). The final mission is the main editing project (Inform Goal). The exam provides instant feedback (Interaction Goal). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ecfdf5; /* emerald-50 */
+        }
+        .tab-active {
+            background-color: #059669; /* emerald-600 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .prompt-block {
+            background-color: #1e293b; /* slate-800 */
+            color: #f1f5f9; /* slate-100 */
+            border-left: 4px solid #059669; /* emerald-600 */
+        }
+        .tool-link {
+            text-decoration: underline;
+            font-weight: 600;
+            color: #047857; /* emerald-700 */
+        }
+         .tool-link:hover {
+            color: #10b981; /* emerald-500 */
+        }
+        .exam-question {
+            background-color: #f8fafc; /* slate-50 */
+            border: 1px solid #e2e8f0; /* slate-200 */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .exam-option label:hover {
+            background-color: #d1fae5; /* emerald-100 */
+        }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease;
+        }
+        .checklist-item:hover {
+            background-color: #f0fdf4;
+        }
+        .checklist-item .icon {
+            flex-shrink: 0;
+            margin-right: 0.75rem;
+            color: #059669;
+        }
+    </style>
+</head>
+<body class="bg-emerald-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Módulo 5: Laboratorio de Edición y Post-producción ✂️</h1>
+            <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">Has llegado a la sala de montaje. Aquí uniremos todas las piezas para crear la versión final y pulida de tu película animada.</p>
+        </header>
+
+        <main class="flex flex-col md:flex-row gap-8">
+            <nav id="tabs-nav" class="md:w-1/4 flex flex-row md:flex-col justify-start md:justify-start overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
+                <a href="#conceptos" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-emerald-200 tab-active">🎬 Conceptos Clave</a>
+                <a href="#taller" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-emerald-200">🛠️ El Taller de Edición</a>
+                <a href="#practica" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-emerald-200">🤸 Práctica Guiada</a>
+                <a href="#evaluacion" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-emerald-200">🏆 Tu Misión Final</a>
+                <a href="#examen" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-emerald-200">📝 Examen Final</a>
+            </nav>
+
+            <div class="md:w-3/4">
+                <section id="conceptos" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 5.0: El Rol del Editor</h2>
+                    <p class="mb-8 text-slate-600">El editor es el narrador final de la historia. Toma todo el material en bruto (nuestros clips de video y audio) y lo ensambla para crear ritmo, emoción y claridad. Nuestra herramienta para esta tarea será <a href="http://capcut.com" target="_blank" rel="noopener noreferrer" class="tool-link">CapCut</a>, un editor de video potente y fácil de usar.</p>
+
+                    <div class="space-y-6">
+                        <article class="bg-emerald-50/50 p-6 rounded-xl border border-emerald-200">
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">El Flujo de Trabajo en Post-producción</h3>
+                            <p class="mb-4">La post-producción es un proceso ordenado. Seguiremos estos pasos para asegurar un resultado profesional y evitar el caos.</p>
+                            <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800 text-lg">Nuestros Pasos de Edición:</h4>
+                                <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-2 mt-2 text-center">
+                                    <div class="p-2 bg-slate-100 rounded-lg">1. Organizar e Importar</div>
+                                    <div class="text-xl text-emerald-500 font-bold">→</div>
+                                    <div class="p-2 bg-slate-100 rounded-lg">2. Sincronizar Audio y Video</div>
+                                    <div class="text-xl text-emerald-500 font-bold">→</div>
+                                     <div class="p-2 bg-slate-100 rounded-lg">3. Añadir Efectos y Títulos</div>
+                                    <div class="text-xl text-emerald-500 font-bold">→</div>
+                                     <div class="p-2 bg-slate-100 rounded-lg">4. Exportar</div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="bg-emerald-50/50 p-6 rounded-xl border border-emerald-200">
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">La Línea de Tiempo: Tu Mesa de Trabajo</h3>
+                            <p class="mb-4">La línea de tiempo (o *timeline*) en CapCut es tu espacio de trabajo principal. Es una representación visual de tu video de izquierda a derecha. Aquí colocarás tus clips de video y pistas de audio en diferentes capas para que suenen y se vean al mismo tiempo.</p>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                 <p class="font-semibold text-slate-700">Pista de Video 1 (V1):</p>
+                                 <div class="w-full bg-emerald-200 h-6 rounded mt-1"></div>
+                                 <p class="font-semibold text-slate-700 mt-2">Pista de Audio 1 (A1 - Narración):</p>
+                                 <div class="w-full bg-sky-200 h-6 rounded mt-1"></div>
+                                 <p class="font-semibold text-slate-700 mt-2">Pista de Audio 2 (A2 - Música):</p>
+                                 <div class="w-full bg-rose-200 h-6 rounded mt-1"></div>
+                             </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="taller" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 5.1: El Taller de Edición en CapCut</h2>
+                    <p class="mb-8 text-slate-600">Vamos a explorar las herramientas y técnicas clave que usarás para ensamblar tu video. No se trata de prompts, sino de clics y arrastrar elementos en la interfaz de CapCut.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 bg-white rounded-lg shadow-sm border-l-4 border-emerald-500">
+                            <h4 class="font-bold text-slate-800 text-lg">1. Ensamblaje y Sincronización</h4>
+                            <p class="text-slate-600 mt-1">Es el primer paso. Colocas la narración como guía en la línea de tiempo y luego pones los clips de video encima para que coincidan con lo que se está contando. La música de fondo va en una pista separada, usualmente por debajo de todo.</p>
+                        </div>
+                         <div class="p-4 bg-white rounded-lg shadow-sm border-l-4 border-emerald-500">
+                            <h4 class="font-bold text-slate-800 text-lg">2. Transiciones</h4>
+                            <p class="text-slate-600 mt-1">Son los efectos que usas para pasar de un clip a otro. Ayudan a que el video fluya suavemente. Un simple "Disolver" (o *Dissolve*) suele ser la opción más elegante y profesional.</p>
+                        </div>
+                         <div class="p-4 bg-white rounded-lg shadow-sm border-l-4 border-emerald-500">
+                            <h4 class="font-bold text-slate-800 text-lg">3. Textos y Subtítulos</h4>
+                            <p class="text-slate-600 mt-1">CapCut tiene una función increíble de "Subtítulos automáticos" que transcribe tu audio de narración y crea los subtítulos por ti. Luego, puedes personalizar la fuente, el color y la animación para que sean atractivos y fáciles de leer.</p>
+                        </div>
+                         <div class="p-4 bg-white rounded-lg shadow-sm border-l-4 border-emerald-500">
+                            <h4 class="font-bold text-slate-800 text-lg">4. Efectos de Sonido (SFX) y Ajuste de Volumen</h4>
+                            <p class="text-slate-600 mt-1">Añadir pequeños sonidos (pasos, un brillo mágico, etc.) enriquece la experiencia. Es crucial ajustar los volúmenes: la narración debe ser lo más claro, seguido por los diálogos, y la música de fondo debe estar a un nivel bajo que no moleste.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="practica" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 5.2: Práctica Guiada - Montando tu Primera Escena</h2>
+                    <p class="mb-8 text-slate-600">¡Manos a la obra! Sigue esta lista de tareas para importar tus archivos y editar la primera escena de tu historia en <a href="http://capcut.com" target="_blank" rel="noopener noreferrer" class="tool-link">CapCut</a>.</p>
+                    
+                    <div class="space-y-2">
+                        <div class="checklist-item">
+                            <div class="icon">➡️</div>
+                            <div><span class="font-bold">Paso 1:</span> Abre CapCut (versión de escritorio recomendada) y crea un nuevo proyecto.</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="icon">➡️</div>
+                            <div><span class="font-bold">Paso 2:</span> Importa todos tus recursos. Busca las carpetas de los Módulos 3 y 4 e importa tus clips de video, tu archivo de narración MP3 y tu música de fondo.</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="icon">➡️</div>
+                            <div><span class="font-bold">Paso 3:</span> Arrastra el archivo de audio de la **narración** a la primera pista de audio (A1) en la línea de tiempo. Esta es tu guía.</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="icon">➡️</div>
+                            <div><span class="font-bold">Paso 4:</span> Escucha los primeros segundos de la narración y arrastra el primer clip de video (ej: `escena_01_toma_01.mp4`) a la pista de video (V1), justo encima del audio correspondiente.</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="icon">➡️</div>
+                            <div><span class="font-bold">Paso 5:</span> Arrastra el segundo clip de video a continuación del primero, sincronizándolo con la siguiente frase del narrador.</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="icon">➡️</div>
+                            <div><span class="font-bold">Paso 6:</span> Ve a la pestaña de "Transiciones", busca el efecto "Disolver" y arrástralo justo en la unión entre los dos clips de video.</div>
+                        </div>
+                         <div class="checklist-item">
+                            <div class="icon">➡️</div>
+                            <div><span class="font-bold">Paso 7:</span> Arrastra tu archivo de **música de fondo** a una segunda pista de audio (A2), debajo de la narración. Haz clic en la pista de música y baja su volumen en el panel de la derecha (un buen punto de partida es -15dB o -20dB).</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="icon">➡️</div>
+                            <div>¡Felicidades! Has editado tu primera escena. Ahora repite este proceso para el resto de tu guion.</div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="evaluacion" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                     <h2 class="text-3xl font-bold mb-6 text-emerald-600">🏆 Tu Misión Final: Edita tu Cuento Completo</h2>
+                    <p class="mb-6 text-slate-600">Este es el momento culminante. Tu misión es tomar todos los recursos que has creado a lo largo del curso y ensamblarlos en un video final, completo y pulido.</p>
+                    
+                    <div class="bg-emerald-50/50 p-6 rounded-xl border-2 border-dashed border-emerald-300">
+                        <h3 class="text-2xl font-semibold mb-3 text-slate-700">Lista de Tareas del Proyecto Final</h3>
+                         <ol class="list-decimal list-inside space-y-3 text-slate-600">
+                            <li>**Ensambla la Historia Completa:** Siguiendo la técnica de la práctica guiada, coloca toda tu narración y sincroniza todos tus clips de video de principio a fin.</li>
+                            <li>**Añade la Música y Ajusta Volúmenes:** Coloca tu música de fondo y asegúrate de que el volumen de la narración sea el principal y el de la música sea secundario.</li>
+                            <li>**Aplica Transiciones:** Añade transiciones suaves (como "Disolver") entre todos los clips para que el flujo sea continuo.</li>
+                            <li>**Genera y Estiliza Subtítulos:** Usa la función de "Subtítulos automáticos" de CapCut. Elige una fuente clara y un color que contraste bien con el video para que sea fácil de leer.</li>
+                            <li>**(Opcional) Añade Efectos de Sonido:** Si quieres ir un paso más allá, busca efectos de sonido gratuitos y añádelos en una tercera pista de audio para enriquecer momentos clave.</li>
+                             <li class="pt-4">
+                                <span class="font-bold text-emerald-700">Exporta tu Video:</span> Ve a "Exportar", dale un nombre a tu proyecto y selecciona una resolución de 1080p. ¡Guarda tu video final!
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section id="examen" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Examen Final del Módulo 5</h2>
+                    <p class="mb-8 text-slate-600">Demuestra que eres un editor competente y que entiendes el proceso de post-producción.</p>
+                    
+                    <form id="exam-form">
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">1. ¿Cuál es el primer archivo que se recomienda colocar en la línea de tiempo para usarlo como guía?</p>
+                            <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="a" class="mr-3">La música de fondo.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="b" class="mr-3">El primer clip de video.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="c" class="mr-3">El audio de la narración (voz en off).</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">2. ¿Para qué se utilizan las "Transiciones"?</p>
+                            <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="a" class="mr-3">Para pasar de un clip a otro de forma suave.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="b" class="mr-3">Para cambiar el color del video.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="c" class="mr-3">Para generar subtítulos automáticamente.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">3. ¿Cuál es el propósito de la función "Subtítulos automáticos" en CapCut?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="a" class="mr-3">Crear música para el video.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="b" class="mr-3">Transcribir el audio hablado y convertirlo en texto en pantalla.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="c" class="mr-3">Exportar el video en alta calidad.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">4. Al ajustar los volúmenes, ¿qué pista de audio debería tener, por lo general, el volumen más bajo?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="a" class="mr-3">La narración.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="b" class="mr-3">La música de fondo.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="c" class="mr-3">Los diálogos de los personajes.</label></div>
+                            </div>
+                        </div>
+
+                         <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">5. ¿Qué es la "línea de tiempo" (timeline) en un software de edición?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="a" class="mr-3">Una lista de todos los archivos importados.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="b" class="mr-3">La ventana de previsualización del video.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="c" class="mr-3">El espacio de trabajo donde se ordenan los clips de video y audio en secuencia.</label></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-emerald-700 transition-colors duration-300">Calificar Examen</button>
+                    </form>
+
+                    <div id="exam-results" class="mt-8 hidden"></div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const tabsNav = document.getElementById('tabs-nav');
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const examForm = document.getElementById('exam-form');
+        const examResults = document.getElementById('exam-results');
+
+        tabsNav.addEventListener('click', (e) => {
+            e.preventDefault();
+            const clickedLink = e.target.closest('.tab-link');
+            if (!clickedLink) return;
+
+            tabLinks.forEach(link => link.classList.remove('tab-active'));
+            clickedLink.classList.add('tab-active');
+
+            const targetId = clickedLink.getAttribute('href').substring(1);
+            
+            tabContents.forEach(content => {
+                if (content.id === targetId) {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            });
+        });
+
+        examForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const answers = {
+                q1: 'c',
+                q2: 'a',
+                q3: 'b',
+                q4: 'b',
+                q5: 'c'
+            };
+            let score = 0;
+            const totalQuestions = Object.keys(answers).length;
+            const formData = new FormData(examForm);
+            
+            let resultsHTML = '<h3 class="text-2xl font-bold mb-4">Resultados del Examen</h3>';
+            
+            for (const [question, correctAnswer] of Object.entries(answers)) {
+                const userAnswer = formData.get(question);
+                const questionElement = document.querySelector(`input[name="${question}"]`).closest('.exam-question');
+                const questionText = questionElement.querySelector('p').textContent;
+
+                resultsHTML += `<div class="p-4 mb-4 rounded-lg `
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    resultsHTML += `bg-green-100 border border-green-300">`;
+                    resultsHTML += `<p class="font-bold text-green-800">✓ Correcto: ${questionText}</p>`;
+                } else {
+                     resultsHTML += `bg-red-100 border border-red-300">`;
+                     resultsHTML += `<p class="font-bold text-red-800">✗ Incorrecto: ${questionText}</p>`;
+                     const correctLabel = document.querySelector(`input[name="${question}"][value="${correctAnswer}"]`).closest('label').textContent;
+                     resultsHTML += `<p class="text-red-700 mt-1">La respuesta correcta era: "${correctLabel.trim()}"</p>`;
+                }
+                 resultsHTML += `</div>`;
+            }
+
+            const percentage = (score / totalQuestions) * 100;
+            let summaryHTML = `<div class="text-center p-6 rounded-lg mb-6 ${percentage >= 80 ? 'bg-green-100' : 'bg-emerald-100'}">
+                <h4 class="text-2xl font-bold">Tu Puntuación: ${score} de ${totalQuestions} (${percentage.toFixed(0)}%)</h4>
+                <p class="mt-2 font-medium">${percentage >= 80 ? '¡Corte final! Eres un editor de primera.' : '¡Buen primer corte! Revisa las lecciones para pulir tus habilidades.'}</p>
+            </div>`;
+
+            examResults.innerHTML = summaryHTML + resultsHTML;
+            examResults.classList.remove('hidden');
+            examResults.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>

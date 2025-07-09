@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 4: Producción de Audio y Música con IA</title>
+    <link href="dist/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Creative Red/Rose/Slate -->
+    <!-- Application Structure Plan: A 'Sound Lab' SPA with vertical tabs (Conceptos, Taller, Práctica, Misión, Examen). This structure introduces audio production, separating music generation (Suno) from voice narration (TTS). It provides a clear workflow for creating the complete soundscape for the video clips from Module 3. -->
+    <!-- Visualization & Content Choices: Key concepts like Music vs. Narration are in clear comparison cards (Inform Goal). Prompting for music is detailed with style tags and lyric instructions (Organize Goal). Exercises have copyable prompts for Suno (Interaction). The final mission is a checklist for audio asset creation (Inform Goal). The exam provides instant feedback (Interaction Goal). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff1f2; /* rose-50 */
+        }
+        .tab-active {
+            background-color: #e11d48; /* rose-600 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .prompt-block {
+            background-color: #1e293b; /* slate-800 */
+            color: #f1f5f9; /* slate-100 */
+            border-left: 4px solid #e11d48; /* rose-600 */
+        }
+        .copy-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .tool-link {
+            text-decoration: underline;
+            font-weight: 600;
+            color: #be123c; /* rose-700 */
+        }
+         .tool-link:hover {
+            color: #f43f5e; /* rose-500 */
+        }
+        .exam-question {
+            background-color: #f8fafc; /* slate-50 */
+            border: 1px solid #e2e8f0; /* slate-200 */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .exam-option label:hover {
+            background-color: #ffe4e6; /* rose-100 */
+        }
+    </style>
+</head>
+<body class="bg-rose-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Módulo 4: Laboratorio de Sonido 🎵</h1>
+            <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">El silencio no es una opción. En este módulo, le daremos a nuestra animación un alma sonora, creando música, canciones y voces que emocionen.</p>
+        </header>
+
+        <main class="flex flex-col md:flex-row gap-8">
+            <nav id="tabs-nav" class="md:w-1/4 flex flex-row md:flex-col justify-start md:justify-start overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
+                <a href="#conceptos" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-rose-200 tab-active">🎧 Conceptos Clave</a>
+                <a href="#taller" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-rose-200">✍️ Taller de Prompts</a>
+                <a href="#practica" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-rose-200">🤸 Práctica Guiada</a>
+                <a href="#evaluacion" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-rose-200">🏆 Tu Misión Final</a>
+                <a href="#examen" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-rose-200">📝 Examen Final</a>
+            </nav>
+
+            <div class="md:w-3/4">
+                <section id="conceptos" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 4.0: El Paisaje Sonoro</h2>
+                    <p class="mb-8 text-slate-600">Un video sin sonido está incompleto. El audio es el 50% de la experiencia emocional. En este módulo, nos enfocaremos en dos elementos cruciales que componen nuestro paisaje sonoro: la **Narración** (la voz que cuenta la historia) y la **Música** (la que crea la atmósfera).</p>
+
+                    <div class="space-y-6">
+                        <article class="bg-rose-50/50 p-6 rounded-xl border border-rose-200">
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Texto a Voz (Text-to-Speech) para la Narración</h3>
+                            <p class="mb-4">Para la voz de nuestro narrador, usaremos una herramienta de **Texto a Voz (TTS)**. Estas IAs pueden leer cualquier texto con una voz increíblemente natural y profesional. Es como tener un actor de doblaje disponible 24/7.</p>
+                            <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800 text-lg">Nuestro Flujo de Narración:</h4>
+                                <div class="flex items-center justify-center space-x-4 mt-2">
+                                    <div class="text-center">
+                                        <div class="text-3xl">📝</div>
+                                        <p class="font-semibold">Guion</p>
+                                        <p class="text-xs text-slate-500">(Creado en Módulo 1)</p>
+                                    </div>
+                                    <div class="text-3xl font-bold text-rose-500">→</div>
+                                    <div class="text-center">
+                                        <div class="text-3xl">🤖</div>
+                                        <p class="font-semibold">IA de TTS</p>
+                                        <p class="text-xs text-slate-500">(Google AI)</p>
+                                    </div>
+                                    <div class="text-3xl font-bold text-rose-500">→</div>
+                                     <div class="text-center">
+                                        <div class="text-3xl">🗣️</div>
+                                        <p class="font-semibold">Audio de Voz</p>
+                                        <p class="text-xs text-slate-500">(Archivo .mp3)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="bg-rose-50/50 p-6 rounded-xl border border-rose-200">
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Creación de Música y Canciones con Suno</h3>
+                            <p class="mb-4">Para la banda sonora, usaremos <a href="https://suno.com/invite/@stingingdirge4991" target="_blank" rel="noopener noreferrer" class="tool-link">Suno</a>, una IA especializada en crear música a partir de texto. Podemos pedirle desde una simple melodía de fondo hasta una canción completa con letra y voz.</p>
+                             <ol class="list-decimal list-inside space-y-2 text-slate-600">
+                                 <li>**Música Instrumental:** Melodías sin letra que acompañan las escenas y crean una atmósfera (tensión, alegría, tristeza).</li>
+                                 <li>**Canciones Completas:** Podemos darle una letra (creada con Gemini, por ejemplo) y pedirle a Suno que la convierta en una canción cantada.</li>
+                             </ol>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="taller" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 4.1: Taller de Prompts Musicales en Suno</h2>
+                    <p class="mb-8 text-slate-600">Escribir prompts para música es como hablarle a un director de orquesta. Debes describir el sentimiento, el estilo y los instrumentos que quieres escuchar. Suno usa un sistema de "etiquetas" para definir el género.</p>
+                    
+                    <article class="bg-rose-50/50 p-6 rounded-xl border border-rose-200">
+                         <h3 class="text-2xl font-semibold mb-4 text-slate-700">Componentes de un Prompt Musical</h3>
+                         <div class="space-y-4">
+                            <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">1. Descripción del Estilo y Sentimiento 🎶</h4>
+                                <p class="text-slate-600">Es la parte más importante. ¿Cómo quieres que se sienta la música? ¿Alegre, misteriosa, épica, relajante?</p>
+                                <p class="text-sm font-semibold text-rose-700 mt-2">Ejemplo: "Una canción de cuna muy suave y tranquila, que inspire ternura y sueño."</p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">2. Instrumentación 🎹</h4>
+                                <p class="text-slate-600">Menciona los instrumentos que quieres que destaquen. Esto ayuda mucho a definir el sonido.</p>
+                                <p class="text-sm font-semibold text-rose-700 mt-2">Ejemplo: "Con piano, campanas de xilófono y un suave ukelele de fondo."</p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">3. Género (Usando Etiquetas) 🏷️</h4>
+                                <p class="text-slate-600">Suno entiende géneros musicales si los pones entre corchetes. Esto enfoca mucho a la IA.</p>
+                                 <ul class="list-disc list-inside text-sm font-semibold text-rose-700 mt-2 ml-4">
+                                     <li>**[Children's Lullaby]:** Para canciones de cuna.</li>
+                                     <li>**[Kids Pop]:** Para canciones infantiles movidas y alegres.</li>
+                                     <li>**[Cinematic Background Music]:** Para música de fondo de película.</li>
+                                     <li>**[Acoustic Folk]:** Para un estilo más orgánico y tranquilo.</li>
+                                 </ul>
+                            </div>
+                         </div>
+                    </article>
+                </section>
+
+                <section id="practica" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 4.2: Práctica Guiada</h2>
+                    <p class="mb-8 text-slate-600">¡Vamos a crear el paisaje sonoro de tu proyecto! Sigue estos ejercicios para generar la narración y la música.</p>
+                    
+                    <div class="space-y-8">
+                        <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 1: Generar la Narración (Voz en Off)</h3>
+                            <p class="mb-4">Este paso es directo. No necesitas un prompt complejo, solo tu guion del Módulo 1.</p>
+                            <ol class="list-decimal list-inside space-y-3 bg-rose-50/50 p-6 rounded-xl border border-rose-200">
+                                <li>Abre tu guion y copia todo el texto que corresponde al **NARRADOR**.</li>
+                                <li>Ve a una herramienta de **Texto a Voz (TTS)** como las que ofrece Google.</li>
+                                <li>Pega el texto en la herramienta.</li>
+                                <li>Elige una voz que te guste (ej: "voz femenina, tono cálido y amigable").</li>
+                                <li>Genera el audio y descárgalo como un archivo MP3.</li>
+                            </ol>
+                        </article>
+
+                         <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 2: Crear Música de Fondo Instrumental</h3>
+                            <p class="mb-4">Ahora, crea una melodía que acompañe tu historia. Abre <a href="https://suno.com/invite/@stingingdirge4991" target="_blank" rel="noopener noreferrer" class="tool-link">Suno</a> y usa un prompt como este en la descripción de la canción.</p>
+                             <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-rose-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-rose-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>[Cinematic Background Music] Música de fondo para un cuento infantil, alegre, curiosa y un poco mágica. Con piano, pizzicato de cuerdas y flauta. Sin letra.</code></pre>
+                            </div>
+                        </article>
+
+                         <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 3 (Opcional): Crear una Canción Completa</h3>
+                            <p class="mb-4">Si tu historia tiene una canción, este es el momento. Pídele a Gemini que escriba una letra corta y luego úsala en Suno.</p>
+                             <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-rose-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-rose-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>[Kids Pop] Una canción infantil muy divertida y pegadiza sobre la amistad. Con ukelele, batería y coros de niños cantando "la la la".</code></pre>
+                            </div>
+                             <p class="mt-4">Luego, en la sección de "Letra" de Suno, pega la letra que te dio Gemini. ¡Suno la cantará!</p>
+                        </article>
+                    </div>
+                </section>
+                
+                <section id="evaluacion" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                     <h2 class="text-3xl font-bold mb-6 text-rose-600">🏆 Tu Misión Final: Crea la Banda Sonora</h2>
+                    <p class="mb-6 text-slate-600">Ya eres el compositor de tu película. Tu misión es crear todos los archivos de audio que necesitarás para dar vida a los clips de video que generaste en el Módulo 3.</p>
+                    
+                    <div class="bg-rose-50/50 p-6 rounded-xl border-2 border-dashed border-rose-300">
+                        <h3 class="text-2xl font-semibold mb-3 text-slate-700">Lista de Tareas (Entregables)</h3>
+                         <ol class="list-decimal list-inside space-y-3 text-slate-600">
+                            <li>**Genera la Narración Completa:**
+                                <ul class="list-disc list-inside ml-6 mt-2">
+                                    <li>Usando una herramienta de TTS, convierte todo el texto del narrador de tu guion en un **único archivo de audio MP3**.</li>
+                                </ul>
+                            </li>
+                            <li>**Genera la Música de Fondo:**
+                                <ul class="list-disc list-inside ml-6 mt-2">
+                                    <li>En Suno, crea y descarga al menos **una pista de música instrumental** que se ajuste al tono general de tu historia.</li>
+                                </ul>
+                            </li>
+                             <li>**(Opcional) Genera tu Canción Principal:**
+                                <ul class="list-disc list-inside ml-6 mt-2">
+                                     <li>Si tu historia incluye una canción, genérala y descárgala como un archivo de audio separado.</li>
+                                </ul>
+                            </li>
+                             <li class="pt-4">
+                                <span class="font-bold text-rose-700">Organiza tus archivos de audio</span> en una nueva carpeta del Módulo 4. ¡Los necesitaremos todos para el gran ensamblaje en el Módulo 5!
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section id="examen" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Examen Final del Módulo 4</h2>
+                    <p class="mb-8 text-slate-600">Demuestra que tienes buen oído y que dominas las herramientas de producción de audio con IA.</p>
+                    
+                    <form id="exam-form">
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">1. ¿Qué es una herramienta de "Texto a Voz" (TTS)?</p>
+                            <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="a" class="mr-3">Una IA que escribe guiones a partir de una idea.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="b" class="mr-3">Una IA que convierte un texto escrito en un archivo de audio hablado.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="c" class="mr-3">Una IA que crea música a partir de un texto.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">2. Para crear una canción de cuna en Suno, ¿cuál de estas etiquetas de género sería más efectiva en el prompt?</p>
+                            <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="a" class="mr-3">[Heavy Metal]</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="b" class="mr-3">[Kids Pop]</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="c" class="mr-3">[Children's Lullaby]</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">3. ¿Cuál es el primer paso recomendado para generar la voz del narrador?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="a" class="mr-3">Copiar el texto del narrador del guion del Módulo 1.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="b" class="mr-3">Inventar un nuevo texto sobre la marcha.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="c" class="mr-3">Grabar tu propia voz y luego modificarla.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">4. Si quieres crear música de fondo sin letra, ¿qué deberías especificar en tu prompt de Suno?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="a" class="mr-3">Pedirle que cante muy bajo.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="b" class="mr-3">No es posible, Suno siempre añade letra.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="c" class="mr-3">Añadir la frase "Sin letra" o "Instrumental" a la descripción.</label></div>
+                            </div>
+                        </div>
+
+                         <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">5. ¿Cuál es el rol principal de la música instrumental en un video?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="a" class="mr-3">Contar la historia principal.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="b" class="mr-3">Acompañar las escenas y crear una atmósfera emocional.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="c" class="mr-3">Reemplazar los diálogos de los personajes.</label></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-rose-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-rose-700 transition-colors duration-300">Calificar Examen</button>
+                    </form>
+
+                    <div id="exam-results" class="mt-8 hidden"></div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const tabsNav = document.getElementById('tabs-nav');
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        const examForm = document.getElementById('exam-form');
+        const examResults = document.getElementById('exam-results');
+
+        tabsNav.addEventListener('click', (e) => {
+            e.preventDefault();
+            const clickedLink = e.target.closest('.tab-link');
+            if (!clickedLink) return;
+
+            tabLinks.forEach(link => link.classList.remove('tab-active'));
+            clickedLink.classList.add('tab-active');
+
+            const targetId = clickedLink.getAttribute('href').substring(1);
+            
+            tabContents.forEach(content => {
+                if (content.id === targetId) {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            });
+        });
+
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const promptBlock = button.nextElementSibling;
+                const textToCopy = promptBlock.textContent;
+
+                try {
+                    const tempTextArea = document.createElement('textarea');
+                    tempTextArea.value = textToCopy;
+                    document.body.appendChild(tempTextArea);
+                    tempTextArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempTextArea);
+                    
+                    const originalText = button.textContent;
+                    button.textContent = '¡Copiado!';
+                    button.style.backgroundColor = '#16a34a'; // green-600
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.backgroundColor = ''; // Revert to original color
+                    }, 2000);
+
+                } catch (err) {
+                    console.error('Error al copiar texto: ', err);
+                }
+            });
+        });
+
+        examForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const answers = {
+                q1: 'b',
+                q2: 'c',
+                q3: 'a',
+                q4: 'c',
+                q5: 'b'
+            };
+            let score = 0;
+            const totalQuestions = Object.keys(answers).length;
+            const formData = new FormData(examForm);
+            
+            let resultsHTML = '<h3 class="text-2xl font-bold mb-4">Resultados del Examen</h3>';
+            
+            for (const [question, correctAnswer] of Object.entries(answers)) {
+                const userAnswer = formData.get(question);
+                const questionElement = document.querySelector(`input[name="${question}"]`).closest('.exam-question');
+                const questionText = questionElement.querySelector('p').textContent;
+
+                resultsHTML += `<div class="p-4 mb-4 rounded-lg `
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    resultsHTML += `bg-green-100 border border-green-300">`;
+                    resultsHTML += `<p class="font-bold text-green-800">✓ Correcto: ${questionText}</p>`;
+                } else {
+                     resultsHTML += `bg-red-100 border border-red-300">`;
+                     resultsHTML += `<p class="font-bold text-red-800">✗ Incorrecto: ${questionText}</p>`;
+                     const correctLabel = document.querySelector(`input[name="${question}"][value="${correctAnswer}"]`).closest('label').textContent;
+                     resultsHTML += `<p class="text-red-700 mt-1">La respuesta correcta era: "${correctLabel.trim()}"</p>`;
+                }
+                 resultsHTML += `</div>`;
+            }
+
+            const percentage = (score / totalQuestions) * 100;
+            let summaryHTML = `<div class="text-center p-6 rounded-lg mb-6 ${percentage >= 80 ? 'bg-green-100' : 'bg-rose-100'}">
+                <h4 class="text-2xl font-bold">Tu Puntuación: ${score} de ${totalQuestions} (${percentage.toFixed(0)}%)</h4>
+                <p class="mt-2 font-medium">${percentage >= 80 ? '¡Genial! Tienes el oído de un verdadero productor musical.' : '¡Vas por buen camino! Sigue practicando para afinar tu oído.'}</p>
+            </div>`;
+
+            examResults.innerHTML = summaryHTML + resultsHTML;
+            examResults.classList.remove('hidden');
+            examResults.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>

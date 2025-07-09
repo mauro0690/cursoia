@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Animación de Video con IA</title>
+    <link href="dist/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Energetic Purple/Violet/Slate -->
+    <!-- Application Structure Plan: An 'Animation Lab' SPA with vertical tabs (Conceptos, Taller, Práctica, Misión, Examen). This structure focuses on the transition from static images to dynamic video. It explains the core concept of Image-to-Video and provides practical exercises for animating characters and controlling the camera. -->
+    <!-- Visualization & Content Choices: The Image-to-Video process is shown as a simple HTML/CSS flowchart (Inform Goal). Prompting techniques for animation are on interactive cards (Organize Goal). Exercises use copyable prompts for direct application in Google's AI tools (Interaction). The final mission is a clear checklist for generating video clips (Inform Goal). The exam provides instant feedback (Interaction Goal). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f3ff; /* violet-50 */
+        }
+        .tab-active {
+            background-color: #7c3aed; /* violet-600 */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .prompt-block {
+            background-color: #1e293b; /* slate-800 */
+            color: #f1f5f9; /* slate-100 */
+            border-left: 4px solid #7c3aed; /* violet-600 */
+        }
+        .copy-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .tool-link {
+            text-decoration: underline;
+            font-weight: 600;
+            color: #6d28d9; /* violet-700 */
+        }
+         .tool-link:hover {
+            color: #8b5cf6; /* violet-500 */
+        }
+        .exam-question {
+            background-color: #f8fafc; /* slate-50 */
+            border: 1px solid #e2e8f0; /* slate-200 */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .exam-option label:hover {
+            background-color: #ede9fe; /* violet-100 */
+        }
+    </style>
+</head>
+<body class="bg-violet-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Módulo 3: Laboratorio de Animación 🎬</h1>
+            <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">¡Luces, cámara, acción! Es hora de dar movimiento a tus creaciones. Aquí te convertirás en el animador y director de tu propia película.</p>
+        </header>
+
+        <main class="flex flex-col md:flex-row gap-8">
+            <nav id="tabs-nav" class="md:w-1/4 flex flex-row md:flex-col justify-start md:justify-start overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
+                <a href="#conceptos" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-violet-200 tab-active">🎥 Conceptos Clave</a>
+                <a href="#taller" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-violet-200">✍️ Taller de Prompts</a>
+                <a href="#practica" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-violet-200">🤸 Práctica Guiada</a>
+                <a href="#evaluacion" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-violet-200">🏆 Tu Misión Final</a>
+                <a href="#examen" class="tab-link whitespace-nowrap text-left text-slate-700 font-semibold py-3 px-5 rounded-lg mb-0 md:mb-2 mr-2 md:mr-0 transition-all duration-300 ease-in-out hover:bg-violet-200">📝 Examen Final</a>
+            </nav>
+
+            <div class="md:w-3/4">
+                <section id="conceptos" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 3.0: De la Imagen al Movimiento</h2>
+                    <p class="mb-8 text-slate-600">Ya tenemos nuestro guion y nuestros actores (los personajes). Ahora vamos a filmar las escenas. La técnica clave que usaremos se llama **Image-to-Video**. Este método nos da un control creativo superior y es fundamental para mantener la consistencia visual que tanto nos costó lograr en el módulo anterior.</p>
+
+                    <div class="space-y-6">
+                        <article class="bg-violet-50/50 p-6 rounded-xl border border-violet-200">
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">¿Qué es Image-to-Video?</h3>
+                            <p class="mb-4">Es una técnica donde no le pides a la IA que cree un video desde cero solo con texto. En su lugar, le das una **imagen de inicio** (uno de los personajes o escenarios que creaste) y luego le das un **prompt de texto que describe el movimiento**. La IA usará tu imagen como referencia principal, lo que asegura que el estilo y el personaje se mantengan consistentes.</p>
+                            <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800 text-lg">Nuestro Flujo de Animación:</h4>
+                                <div class="flex items-center justify-center space-x-4 mt-2">
+                                    <div class="text-center">
+                                        <div class="text-3xl">🖼️</div>
+                                        <p class="font-semibold">Tu Imagen</p>
+                                        <p class="text-xs text-slate-500">(Creada en Módulo 2)</p>
+                                    </div>
+                                    <div class="text-3xl font-bold text-violet-500">+</div>
+                                    <div class="text-center">
+                                        <div class="text-3xl">✍️</div>
+                                        <p class="font-semibold">Tu Prompt</p>
+                                        <p class="text-xs text-slate-500">(Describe el movimiento)</p>
+                                    </div>
+                                    <div class="text-3xl font-bold text-violet-500">=</div>
+                                     <div class="text-center">
+                                        <div class="text-3xl">🎬</div>
+                                        <p class="font-semibold">Clip de Video</p>
+                                        <p class="text-xs text-slate-500">(Animación consistente)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="bg-violet-50/50 p-6 rounded-xl border border-violet-200">
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">La Estrategia: Clips Cortos</h3>
+                            <p class="mb-4">No intentes animar todo tu guion en un solo prompt. Sería como intentar filmar una película entera en una sola toma. Nuestro método profesional es mucho más simple y efectivo:</p>
+                             <ol class="list-decimal list-inside space-y-2 text-slate-600">
+                                 <li>Lee una línea o una acción de tu guion (ej: "Bip-Bop saluda con la mano").</li>
+                                 <li>Crea un prompt de animación para esa acción específica.</li>
+                                 <li>Genera un clip de video corto (de 3 a 5 segundos).</li>
+                                 <li>Guarda ese clip y pasa a la siguiente acción del guion.</li>
+                             </ol>
+                             <p class="mt-4 p-4 bg-white rounded-lg shadow-sm">Al final, tendrás una "biblioteca" de clips que representan cada momento de tu historia. En el Módulo 5, los uniremos todos en CapCut como un rompecabezas.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="taller" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 3.1: Taller de Prompts de Animación</h2>
+                    <p class="mb-8 text-slate-600">Un prompt de animación tiene dos objetivos: describir el movimiento del personaje y dirigir la "cámara". Aprender a combinar ambos te dará un control total sobre tus escenas.</p>
+                    
+                    <article class="bg-violet-50/50 p-6 rounded-xl border border-violet-200">
+                         <h3 class="text-2xl font-semibold mb-4 text-slate-700">Componentes de un Prompt de Animación</h3>
+                         <div class="space-y-4">
+                            <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">1. Descripción del Movimiento del Sujeto 🏃</h4>
+                                <p class="text-slate-600">Describe la acción principal de forma clara y vívida. Usa verbos de acción fuertes.</p>
+                                <p class="text-sm font-semibold text-violet-700 mt-2">Ejemplo: "El zorro bebé saluda con su pata derecha, con un movimiento suave y feliz."</p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">2. Movimiento Secundario o Ambiental 🍃</h4>
+                                <p class="text-slate-600">Añade vida a la escena. ¿Qué más se mueve? Esto hace que el mundo se sienta más real.</p>
+                                <p class="text-sm font-semibold text-violet-700 mt-2">Ejemplo: "Mientras el zorro saluda, las hojas de los árboles detrás de él se mecen suavemente con la brisa."</p>
+                            </div>
+                             <div class="p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-slate-800">3. Control de Cámara 🎥</h4>
+                                <p class="text-slate-600">Dirige la vista del espectador. Puedes usar términos cinematográficos simples.</p>
+                                 <ul class="list-disc list-inside text-sm font-semibold text-violet-700 mt-2 ml-4">
+                                     <li>**Zoom in / Zoom out:** "Lento zoom hacia el rostro sonriente del zorro."</li>
+                                     <li>**Pan left / Pan right (Paneo):** "La cámara panea lentamente de izquierda a derecha, revelando el bosque."</li>
+                                     <li>**Tilt up / Tilt down (Inclinación):** "La cámara se inclina hacia arriba para mostrar la luna llena en el cielo."</li>
+                                 </ul>
+                            </div>
+                         </div>
+                    </article>
+                </section>
+
+                <section id="practica" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Lección 3.2: Práctica Guiada</h2>
+                    <p class="mb-8 text-slate-600">¡A filmar! Toma las imágenes que creaste en el Módulo 2 y tu guion. Sigue los ejercicios para generar tus primeros clips de video usando la IA de <a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer" class="tool-link">Google</a>.</p>
+                    
+                    <div class="space-y-8">
+                        <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 1: Animar una Acción Simple</h3>
+                            <p class="mb-4">Empecemos con un movimiento básico de tu personaje. Sube la imagen frontal de tu personaje a la herramienta de IA y usa este prompt.</p>
+                            <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-violet-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-violet-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>[Tu personaje, ej: El zorro bebé] parpadea lentamente y sonríe de forma tierna. El movimiento es muy sutil y suave.</code></pre>
+                            </div>
+                        </article>
+
+                         <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 2: Combinar Acción y Movimiento de Cámara</h3>
+                            <p class="mb-4">Ahora, vamos a hacer una escena más dinámica. Sube la imagen de tu personaje en uno de los escenarios que creaste.</p>
+                             <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-violet-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-violet-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>[Tu personaje] camina de izquierda a derecha de la pantalla. Mientras camina, la cámara hace un lento zoom in hacia su rostro. Las hojas de los árboles en el fondo se mueven con el viento.</code></pre>
+                            </div>
+                        </article>
+
+                         <article>
+                            <h3 class="text-2xl font-semibold mb-3 text-slate-700">Ejercicio 3: Animar un Escenario (Plano de Establecimiento)</h3>
+                            <p class="mb-4">No todas las escenas necesitan al personaje. Un "plano de establecimiento" muestra el lugar para sentar la atmósfera. Sube una de tus imágenes de escenario.</p>
+                             <div class="prompt-block p-4 rounded-lg relative">
+                                <button class="copy-btn absolute top-3 right-3 bg-violet-500 text-white text-xs font-bold py-1 px-3 rounded-md hover:bg-violet-600 focus:outline-none">Copiar</button>
+                                <pre class="whitespace-pre-wrap text-sm"><code>La cámara panea lentamente de izquierda a derecha a través de este [lugar, ej: acogedor interior de la madriguera]. La luz que entra por la ventana parpadea suavemente, como si viniera de una fogata. No hay personajes.</code></pre>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+                
+                <section id="evaluacion" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                     <h2 class="text-3xl font-bold mb-6 text-violet-600">🏆 Tu Misión Final: ¡Filma tu Película!</h2>
+                    <p class="mb-6 text-slate-600">Has aprendido a dirigir y animar. Tu misión ahora es tomar tu guion y los recursos visuales de los módulos anteriores y producir todos los clips de video necesarios para contar tu historia.</p>
+                    
+                    <div class="bg-violet-50/50 p-6 rounded-xl border-2 border-dashed border-violet-300">
+                        <h3 class="text-2xl font-semibold mb-3 text-slate-700">Lista de Tareas (Entregables)</h3>
+                         <ol class="list-decimal list-inside space-y-3 text-slate-600">
+                            <li>**Revisa tu Guion:** Lee tu guion línea por línea y haz una lista de todas las "tomas" o clips que necesitas (ej: "Clip 1: El zorro se despierta", "Clip 2: Plano del bosque", "Clip 3: El zorro camina", etc.).</li>
+                            <li>**Genera tus Clips de Video:**
+                                <ul class="list-disc list-inside ml-6 mt-2 space-y-2 text-slate-500">
+                                    <li>Para cada toma de tu lista, sube la imagen de personaje o escenario apropiada.</li>
+                                    <li>Escribe un prompt de animación detallado que describa la acción y el movimiento de cámara.</li>
+                                    <li>Genera un clip de video de 3 a 5 segundos.</li>
+                                </ul>
+                            </li>
+                             <li>**Organiza tu Biblioteca de Clips:**
+                                <ul class="list-disc list-inside ml-6 mt-2 space-y-2 text-slate-500">
+                                     <li>Crea una nueva carpeta para el Módulo 3 y guarda todos tus clips de video generados.</li>
+                                     <li>Nombra los clips de forma ordenada (ej: `escena_01_toma_01.mp4`, `escena_01_toma_02.mp4`) para que sea fácil encontrarlos en el siguiente módulo.</li>
+                                </ul>
+                            </li>
+                             <li class="pt-4">
+                                <span class="font-bold text-violet-700">¡Prepárate!</span> En el Módulo 4 crearemos la música y el sonido para estos clips.
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+
+                <section id="examen" class="tab-content bg-white p-6 sm:p-8 rounded-2xl shadow-lg hidden">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-800">Examen Final del Módulo 3</h2>
+                    <p class="mb-8 text-slate-600">Demuestra tus habilidades como director y animador de IA. Contesta correctamente y estarás listo para la post-producción.</p>
+                    
+                    <form id="exam-form">
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">1. ¿Cuál es la principal ventaja de usar la técnica "Image-to-Video"?</p>
+                            <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="a" class="mr-3">Genera videos más largos y de mayor resolución.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="b" class="mr-3">Ayuda a mantener la consistencia visual del personaje y el estilo.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q1" value="c" class="mr-3">Es la única forma de añadir sonido al video.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">2. ¿Cuál es la estrategia recomendada para animar un guion completo?</p>
+                            <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="a" class="mr-3">Escribir un prompt muy largo que describa toda la historia de una vez.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="b" class="mr-3">Generar muchos clips de video cortos y separados para cada acción del guion.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q2" value="c" class="mr-3">Animar primero el final de la historia y luego el principio.</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">3. ¿Qué término se usa para describir un movimiento de cámara de izquierda a derecha?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="a" class="mr-3">Zoom in</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="b" class="mr-3">Tilt up</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q3" value="c" class="mr-3">Pan right (Paneo a la derecha)</label></div>
+                            </div>
+                        </div>
+
+                        <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">4. ¿Qué es un "plano de establecimiento"?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="a" class="mr-3">Un primer plano del rostro del personaje.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="b" class="mr-3">Un plano que muestra el lugar o escenario para establecer la atmósfera, usualmente sin personajes.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q4" value="c" class="mr-3">El último plano del video.</label></div>
+                            </div>
+                        </div>
+
+                         <div class="exam-question">
+                            <p class="font-semibold text-lg mb-4">5. ¿Cuál es el primer paso en el flujo de trabajo de Image-to-Video?</p>
+                             <div class="space-y-2">
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="a" class="mr-3">Escribir el prompt de movimiento.</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="b" class="mr-3">Subir una imagen de inicio (personaje o escenario).</label></div>
+                                <div class="exam-option"><label class="flex items-center p-3 rounded-lg cursor-pointer"><input type="radio" name="q5" value="c" class="mr-3">Elegir la música de fondo.</label></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full bg-violet-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-violet-700 transition-colors duration-300">Calificar Examen</button>
+                    </form>
+
+                    <div id="exam-results" class="mt-8 hidden"></div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const tabsNav = document.getElementById('tabs-nav');
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        const examForm = document.getElementById('exam-form');
+        const examResults = document.getElementById('exam-results');
+
+        tabsNav.addEventListener('click', (e) => {
+            e.preventDefault();
+            const clickedLink = e.target.closest('.tab-link');
+            if (!clickedLink) return;
+
+            tabLinks.forEach(link => link.classList.remove('tab-active'));
+            clickedLink.classList.add('tab-active');
+
+            const targetId = clickedLink.getAttribute('href').substring(1);
+            
+            tabContents.forEach(content => {
+                if (content.id === targetId) {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            });
+        });
+
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const promptBlock = button.nextElementSibling;
+                const textToCopy = promptBlock.textContent;
+
+                try {
+                    const tempTextArea = document.createElement('textarea');
+                    tempTextArea.value = textToCopy;
+                    document.body.appendChild(tempTextArea);
+                    tempTextArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempTextArea);
+                    
+                    const originalText = button.textContent;
+                    button.textContent = '¡Copiado!';
+                    button.style.backgroundColor = '#16a34a'; // green-600
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.backgroundColor = ''; // Revert to original color
+                    }, 2000);
+
+                } catch (err) {
+                    console.error('Error al copiar texto: ', err);
+                }
+            });
+        });
+
+        examForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const answers = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'c',
+                q4: 'b',
+                q5: 'b'
+            };
+            let score = 0;
+            const totalQuestions = Object.keys(answers).length;
+            const formData = new FormData(examForm);
+            
+            let resultsHTML = '<h3 class="text-2xl font-bold mb-4">Resultados del Examen</h3>';
+            
+            for (const [question, correctAnswer] of Object.entries(answers)) {
+                const userAnswer = formData.get(question);
+                const questionElement = document.querySelector(`input[name="${question}"]`).closest('.exam-question');
+                const questionText = questionElement.querySelector('p').textContent;
+
+                resultsHTML += `<div class="p-4 mb-4 rounded-lg `
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    resultsHTML += `bg-green-100 border border-green-300">`;
+                    resultsHTML += `<p class="font-bold text-green-800">✓ Correcto: ${questionText}</p>`;
+                } else {
+                     resultsHTML += `bg-red-100 border border-red-300">`;
+                     resultsHTML += `<p class="font-bold text-red-800">✗ Incorrecto: ${questionText}</p>`;
+                     const correctLabel = document.querySelector(`input[name="${question}"][value="${correctAnswer}"]`).closest('label').textContent;
+                     resultsHTML += `<p class="text-red-700 mt-1">La respuesta correcta era: "${correctLabel.trim()}"</p>`;
+                }
+                 resultsHTML += `</div>`;
+            }
+
+            const percentage = (score / totalQuestions) * 100;
+            let summaryHTML = `<div class="text-center p-6 rounded-lg mb-6 ${percentage >= 80 ? 'bg-green-100' : 'bg-violet-100'}">
+                <h4 class="text-2xl font-bold">Tu Puntuación: ${score} de ${totalQuestions} (${percentage.toFixed(0)}%)</h4>
+                <p class="mt-2 font-medium">${percentage >= 80 ? '¡Felicidades! Eres oficialmente un animador de IA.' : '¡Casi lo tienes! Repasa las lecciones para perfeccionar tu técnica.'}</p>
+            </div>`;
+
+            examResults.innerHTML = summaryHTML + resultsHTML;
+            examResults.classList.remove('hidden');
+            examResults.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+</html>
